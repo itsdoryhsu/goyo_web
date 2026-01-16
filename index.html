@@ -72,6 +72,23 @@
         .shadow-soft {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+
+        .tab-button {
+            color: #6b7280;
+        }
+
+        .tab-button.active {
+            background-color: #9980ff !important;
+            color: white !important;
+        }
+
+        .tab-content {
+            display: block;
+        }
+
+        .tab-content.hidden {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -95,6 +112,14 @@
                         if (typeof setActiveNav === 'function') {
                             setActiveNav('home');
                         }
+
+                        // Rebind demo modal buttons after header is loaded
+                        setTimeout(() => {
+                            if (typeof window.demoModal !== 'undefined' && window.demoModal) {
+                                window.demoModal.bindTriggerButtons();
+                                console.log('Demo modal buttons rebound after header load');
+                            }
+                        }, 100);
                     })
                     .catch(error => console.error('Error loading header:', error));
             });
@@ -112,38 +137,33 @@
                                     class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                                 <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                             </span>
-                            <span class="font-chinese">新功能：企業代理 API v2.0</span>
+                            <span class="font-chinese">落地解決方案</span>
                         </div>
                         <h1
                             class="text-4xl font-extrabold tracking-tight text-text-main sm:text-5xl xl:text-6xl heading-chinese">
-                            為<span class="text-primary">企業</span>打造的可擴展 AI 代理解決方案
+                            為<span class="text-primary">企業</span>選定最合適的技術解決方案
                         </h1>
                         <p class="text-lg text-text-muted leading-relaxed max-w-md body-chinese">
-                            使用專為您的基礎設施設計的安全、智慧代理自動化複雜工作流程。幾分鐘內部署，無限擴展。
+                            專注營運痛點、提供有效率、自動化的落地服務方案。幾分鐘內部署，無限擴展。
                         </p>
                         <div class="flex w-full flex-col gap-3 sm:flex-row sm:w-auto mt-2">
                             <button
                                 class="flex h-12 w-full sm:w-auto items-center justify-center rounded-xl bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary-dark transition-all active:scale-95 font-chinese">
                                 立即開始
                             </button>
-                            <button
-                                class="flex h-12 w-full sm:w-auto items-center justify-center rounded-xl border border-gray-200 bg-white px-8 text-base font-bold text-text-main hover:bg-gray-50 hover:border-gray-300 transition-all active:scale-95 font-chinese">
-                                <span class="material-symbols-outlined mr-2 text-lg">description</span>
-                                說明文件
-                            </button>
                         </div>
                         <div class="flex items-center gap-4 text-xs text-text-muted font-medium mt-2">
                             <div class="flex items-center gap-1">
                                 <span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
-                                SOC2 Type II
+                                免費專業諮詢
                             </div>
                             <div class="flex items-center gap-1">
                                 <span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
-                                99.99% Uptime
+                                支援客製化方案
                             </div>
                             <div class="flex items-center gap-1">
                                 <span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
-                                GDPR Ready
+                                24/7 支援
                             </div>
                         </div>
                     </div>
@@ -220,160 +240,344 @@
                 </div>
             </div>
         </section>
-        <!-- Social Proof / Logos -->
-        <section class="border-y border-gray-100 bg-white/50 backdrop-blur-sm py-12">
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <p class="text-center text-sm font-semibold text-text-muted mb-8">受到前瞻性企業的信賴</p>
-                <div
-                    class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-60 grayscale transition-all hover:grayscale-0 hover:opacity-100 duration-500">
-                    <!-- Placeholder Logos using Text for simplicity, styling to look like logos -->
-                    <div class="flex items-center gap-2 font-bold text-xl text-gray-800"><span
-                            class="material-symbols-outlined">diamond</span> Acme Corp</div>
-                    <div class="flex items-center gap-2 font-bold text-xl text-gray-800"><span
-                            class="material-symbols-outlined">change_history</span> Vertex</div>
-                    <div class="flex items-center gap-2 font-bold text-xl text-gray-800"><span
-                            class="material-symbols-outlined">api</span> Flowbase</div>
-                    <div class="flex items-center gap-2 font-bold text-xl text-gray-800"><span
-                            class="material-symbols-outlined">bolt</span> EnergySim</div>
-                    <div class="flex items-center gap-2 font-bold text-xl text-gray-800"><span
-                            class="material-symbols-outlined">layers</span> Stacked</div>
-                </div>
-            </div>
-        </section>
-        <!-- Bento Grid Services -->
+        <!-- Services Tabs Section -->
         <section class="py-24 relative overflow-hidden">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="mb-16 md:text-center max-w-3xl mx-auto">
                     <h2 class="text-3xl font-bold tracking-tight text-text-main sm:text-4xl mb-4">部署 AI 代理所需的一切</h2>
                     <p class="text-lg text-text-muted">模組化、安全且可擴展的組件，旨在無縫地合於您現有的企業架構。</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
-                    <!-- Card 1: AI Automation (Main Feature) -->
-                    <div
-                        class="md:col-span-2 group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity">
-                        </div>
-                        <div class="relative z-10 h-full flex flex-col justify-between">
-                            <div>
-                                <div
-                                    class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                                    <span class="material-symbols-outlined text-2xl">auto_awesome</span>
-                                </div>
-                                <h3 class="text-2xl font-bold text-text-main mb-2">AI 工作流程自動化</h3>
-                                <p class="text-text-muted max-w-md">建立由自主代理精確執行的複雜多步驟工作流程。從數據輸入到決策制定，自動化日常繁瑣任務。</p>
+
+                <!-- Tabs Navigation -->
+                <div class="flex justify-center mb-12">
+                    <div class="bg-gray-100 p-1 rounded-xl">
+                        <button class="tab-button active px-6 py-3 rounded-lg font-semibold transition-all duration-300" data-tab="technology">
+                            我想找技術
+                        </button>
+                        <button class="tab-button px-6 py-3 rounded-lg font-semibold transition-all duration-300" data-tab="talent">
+                            我想找人才
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Technology Tab Content -->
+                <div id="technology-content" class="tab-content">
+                    <!-- Agent Services Section -->
+                    <div class="mb-20">
+                        <div class="flex items-center justify-between mb-8">
+                            <h3 class="text-2xl font-bold text-text-main">AI 代理服務</h3>
+                            <div class="flex gap-2">
+                                <button class="agent-prev w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-primary hover:text-primary transition-colors bg-white">
+                                    <span class="material-symbols-outlined text-sm">chevron_left</span>
+                                </button>
+                                <button class="agent-next w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-dark transition-colors">
+                                    <span class="material-symbols-outlined text-sm">chevron_right</span>
+                                </button>
                             </div>
-                            <!-- Visual element for card -->
-                            <div class="mt-8 flex gap-3 overflow-hidden">
-                                <div
-                                    class="flex-1 h-32 bg-gray-50 rounded-lg border border-gray-100 p-3 shadow-sm transform translate-y-4 group-hover:translate-y-2 transition-transform duration-500">
-                                    <div class="h-2 w-16 bg-primary/20 rounded mb-2"></div>
-                                    <div class="h-2 w-full bg-gray-200 rounded mb-1"></div>
-                                    <div class="h-2 w-2/3 bg-gray-200 rounded"></div>
+                        </div>
+                    <div class="agent-carousel overflow-hidden">
+                        <div class="agent-slides flex transition-transform duration-500 ease-in-out gap-6">
+                            <!-- Agent Card 1 -->
+                            <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                                    <span class="material-symbols-outlined text-xl">support_agent</span>
                                 </div>
-                                <div
-                                    class="flex-1 h-32 bg-white rounded-lg border border-gray-200 p-3 shadow-md transform group-hover:scale-105 transition-transform duration-500 z-10">
-                                    <div class="flex items-center justify-between mb-2">
-                                        <div
-                                            class="h-2 w-12 bg-green-100 text-green-600 text-[10px] flex items-center px-1 rounded">
-                                            執行中</div>
-                                        <span class="material-symbols-outlined text-xs text-gray-400">more_horiz</span>
+                                <h4 class="text-lg font-bold text-text-main mb-2">客服代理</h4>
+                                <p class="text-text-muted text-sm mb-4">24/7 智能客服系統，自動處理常見問題、訂單查詢和技術支援，提供一致的優質服務體驗。</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded">多語言</span>
+                                    <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded">情緒識別</span>
+                                </div>
+                            </div>
+
+                            <!-- Agent Card 2 -->
+                            <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-green-50 text-green-600">
+                                    <span class="material-symbols-outlined text-xl">account_balance</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-text-main mb-2">財務代理</h4>
+                                <p class="text-text-muted text-sm mb-4">自動化財務報表生成、費用審核和預算分析，提供即時的財務洞察和風險預警。</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded">報表自動化</span>
+                                    <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded">風險評估</span>
+                                </div>
+                            </div>
+
+                            <!-- Agent Card 3 -->
+                            <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
+                                    <span class="material-symbols-outlined text-xl">document_scanner</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-text-main mb-2">單據辨識代理</h4>
+                                <p class="text-text-muted text-sm mb-4">智能識別各類單據、發票和文件，自動提取關鍵資訊並整理歸檔，大幅提升處理效率。</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded">OCR識別</span>
+                                    <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded">自動歸檔</span>
+                                </div>
+                            </div>
+
+                            <!-- Agent Card 4 -->
+                            <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
+                                    <span class="material-symbols-outlined text-xl">groups</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-text-main mb-2">人資問答代理</h4>
+                                <p class="text-text-muted text-sm mb-4">解答員工關於政策、福利和程序的問題，協助新進員工快速了解公司制度和流程。</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-orange-50 text-orange-600 text-xs rounded">政策查詢</span>
+                                    <span class="px-2 py-1 bg-orange-50 text-orange-600 text-xs rounded">員工入職</span>
+                                </div>
+                            </div>
+
+                            <!-- Agent Card 5 -->
+                            <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-red-50 text-red-600">
+                                    <span class="material-symbols-outlined text-xl">shopping_cart</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-text-main mb-2">銷售代理</h4>
+                                <p class="text-text-muted text-sm mb-4">智能化潛客開發、需求分析和報價生成，協助銷售團隊提高成交率和客戶滿意度。</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-red-50 text-red-600 text-xs rounded">潛客開發</span>
+                                    <span class="px-2 py-1 bg-red-50 text-red-600 text-xs rounded">智能報價</span>
+                                </div>
+                            </div>
+
+                            <!-- Agent Card 6 -->
+                            <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600">
+                                    <span class="material-symbols-outlined text-xl">inventory</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-text-main mb-2">庫存管理代理</h4>
+                                <p class="text-text-muted text-sm mb-4">智能監控庫存水位、預測需求並自動補貨，優化庫存成本和供應鏈效率。</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-cyan-50 text-cyan-600 text-xs rounded">需求預測</span>
+                                    <span class="px-2 py-1 bg-cyan-50 text-cyan-600 text-xs rounded">自動補貨</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <!-- Custom Projects Section -->
+                    <div>
+                        <div class="flex items-center justify-between mb-8">
+                            <h3 class="text-2xl font-bold text-text-main">客製化專案</h3>
+                            <div class="flex gap-2">
+                                <button class="custom-prev w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-primary hover:text-primary transition-colors bg-white">
+                                    <span class="material-symbols-outlined text-sm">chevron_left</span>
+                                </button>
+                                <button class="custom-next w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-dark transition-colors">
+                                    <span class="material-symbols-outlined text-sm">chevron_right</span>
+                                </button>
+                            </div>
+                        </div>
+                    <div class="custom-carousel overflow-hidden">
+                        <div class="custom-slides flex transition-transform duration-500 ease-in-out gap-6">
+                            <!-- Custom Card 1 -->
+                            <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                                    <span class="material-symbols-outlined text-xl">dashboard</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-text-main mb-2">自動化儀表板建置</h4>
+                                <p class="text-text-muted text-sm mb-4">打造企業專屬的即時數據儀表板，整合多系統數據源，提供直觀的業務洞察視覺化。</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">即時數據</span>
+                                    <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded">多源整合</span>
+                                </div>
+                            </div>
+
+                            <!-- Custom Card 2 -->
+                            <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
+                                    <span class="material-symbols-outlined text-xl">psychology</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-text-main mb-2">機器學習模型建置</h4>
+                                <p class="text-text-muted text-sm mb-4">根據企業特定需求開發專屬的ML模型，從數據準備到模型部署，提供完整解決方案。</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-indigo-50 text-indigo-600 text-xs rounded">客製模型</span>
+                                    <span class="px-2 py-1 bg-indigo-50 text-indigo-600 text-xs rounded">自動訓練</span>
+                                </div>
+                            </div>
+
+                            <!-- Custom Card 3 -->
+                            <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
+                                    <span class="material-symbols-outlined text-xl">settings</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-text-main mb-2">客製化AI系統流程</h4>
+                                <p class="text-text-muted text-sm mb-4">設計並實作符合企業特殊需求的AI工作流程，整合現有系統，優化營運效率。</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-teal-50 text-teal-600 text-xs rounded">流程優化</span>
+                                    <span class="px-2 py-1 bg-teal-50 text-teal-600 text-xs rounded">系統整合</span>
+                                </div>
+                            </div>
+
+                            <!-- Custom Card 4 -->
+                            <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-yellow-50 text-yellow-600">
+                                    <span class="material-symbols-outlined text-xl">api</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-text-main mb-2">API 整合服務</h4>
+                                <p class="text-text-muted text-sm mb-4">協助企業整合第三方服務和內部系統，建立統一的API接口，提升系統互操作性。</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-yellow-50 text-yellow-600 text-xs rounded">API設計</span>
+                                    <span class="px-2 py-1 bg-yellow-50 text-yellow-600 text-xs rounded">系統串接</span>
+                                </div>
+                            </div>
+
+                            <!-- Custom Card 5 -->
+                            <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-pink-50 text-pink-600">
+                                    <span class="material-symbols-outlined text-xl">auto_fix_high</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-text-main mb-2">智能化流程改造</h4>
+                                <p class="text-text-muted text-sm mb-4">分析現有業務流程，運用AI技術重新設計並自動化關鍵環節，提升整體營運效率。</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-pink-50 text-pink-600 text-xs rounded">流程分析</span>
+                                    <span class="px-2 py-1 bg-pink-50 text-pink-600 text-xs rounded">智能改造</span>
+                                </div>
+                            </div>
+
+                            <!-- Custom Card 6 -->
+                            <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gray-50 text-gray-600">
+                                    <span class="material-symbols-outlined text-xl">cloud_sync</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-text-main mb-2">雲端部署諮詢</h4>
+                                <p class="text-text-muted text-sm mb-4">提供完整的雲端遷移和部署策略，確保系統穩定性、安全性和可擴展性。</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">雲端架構</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">安全部署</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Talent Tab Content -->
+                <div id="talent-content" class="tab-content hidden">
+                    <!-- Recruitment Process -->
+                    <div class="mb-12 text-center">
+                        <h3 class="text-2xl font-bold text-text-main mb-6">資訊人力招募服務</h3>
+                        <div class="max-w-4xl mx-auto">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                                <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                                    <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mx-auto">
+                                        <span class="material-symbols-outlined text-xl">chat</span>
                                     </div>
-                                    <div class="h-2 w-full bg-gray-100 rounded mb-2"></div>
-                                    <div class="h-2 w-full bg-gray-100 rounded mb-2"></div>
-                                    <div class="h-2 w-1/2 bg-gray-100 rounded"></div>
+                                    <h4 class="font-bold text-text-main mb-2">共同討論需求人才</h4>
+                                    <p class="text-text-muted text-sm">深入了解您的專案需求與技術要求</p>
                                 </div>
-                                <div
-                                    class="flex-1 h-32 bg-gray-50 rounded-lg border border-gray-100 p-3 shadow-sm transform translate-y-4 group-hover:translate-y-2 transition-transform duration-500">
-                                    <div class="h-2 w-16 bg-gray-200 rounded mb-2"></div>
-                                    <div class="h-2 w-full bg-gray-200 rounded mb-1"></div>
+                                <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                                    <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mx-auto">
+                                        <span class="material-symbols-outlined text-xl">filter_list</span>
+                                    </div>
+                                    <h4 class="font-bold text-text-main mb-2">果友協助履歷條選</h4>
+                                    <p class="text-text-muted text-sm">專業篩選符合條件的優秀候選人</p>
+                                </div>
+                                <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                                    <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mx-auto">
+                                        <span class="material-symbols-outlined text-xl">groups</span>
+                                    </div>
+                                    <h4 class="font-bold text-text-main mb-2">共同面試</h4>
+                                    <p class="text-text-muted text-sm">雙方共同評估技術能力與團隊適配</p>
+                                </div>
+                                <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                                    <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mx-auto">
+                                        <span class="material-symbols-outlined text-xl">check_circle</span>
+                                    </div>
+                                    <h4 class="font-bold text-text-main mb-2">確認人才適配度</h4>
+                                    <p class="text-text-muted text-sm">最終確認合作模式與專案安排</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Card 2: System Integration -->
-                    <div
-                        class="md:col-span-1 group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        </div>
-                        <div class="relative z-10 flex flex-col h-full">
-                            <div
-                                class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/30 text-primary-dark">
-                                <span class="material-symbols-outlined text-2xl">hub</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-text-main mb-2">系統整合</h3>
-                            <p class="text-text-muted text-sm flex-grow">透過我們統一的 API 網格，連接 500+ 企業應用程式，包括 Salesforce、SAP
-                                和 Slack。</p>
-                            <div class="mt-6 flex flex-wrap gap-2">
-                                <span
-                                    class="px-2 py-1 bg-gray-50 border border-gray-200 rounded text-xs text-gray-600">REST
-                                    API</span>
-                                <span
-                                    class="px-2 py-1 bg-gray-50 border border-gray-200 rounded text-xs text-gray-600">GraphQL</span>
-                                <span
-                                    class="px-2 py-1 bg-gray-50 border border-gray-200 rounded text-xs text-gray-600">Webhooks</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 3: Data 隱私政策 & Security (Full Width or Third) -->
-                    <div
-                        class="md:col-span-1 group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
-                        <div
-                            class="absolute -right-4 -bottom-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all">
-                        </div>
-                        <div class="relative z-10">
-                            <div
-                                class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                                <span class="material-symbols-outlined text-2xl">shield_lock</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-text-main mb-2">企業級安全</h3>
-                            <p class="text-text-muted text-sm">您的數據永遠不會離開您的 VPC。我們提供地端部署選項，確保最大限度的合規性。</p>
-                            <div class="mt-6">
-                                <div class="flex items-center gap-2 text-sm text-text-main font-medium mb-2">
-                                    <span class="material-symbols-outlined text-green-500 text-base">lock</span>
-                                    端到端加密
+                            <!-- Connection arrows for desktop -->
+                            <div class="hidden md:flex items-center justify-center gap-4 -mt-4 mb-8">
+                                <div class="flex-1 border-t-2 border-dashed border-primary/30"></div>
+                                <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-white text-sm">arrow_forward</span>
                                 </div>
-                                <div class="w-full bg-gray-100 rounded-full h-1.5">
-                                    <div class="bg-green-500 h-1.5 rounded-full w-full"></div>
+                                <div class="flex-1 border-t-2 border-dashed border-primary/30"></div>
+                                <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-white text-sm">arrow_forward</span>
                                 </div>
+                                <div class="flex-1 border-t-2 border-dashed border-primary/30"></div>
+                                <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-white text-sm">arrow_forward</span>
+                                </div>
+                                <div class="flex-1 border-t-2 border-dashed border-primary/30"></div>
                             </div>
                         </div>
                     </div>
 
-
-                    <!-- Card 4: Analytics -->
-                    <div
-                        class="md:col-span-2 group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
-                        <div class="absolute inset-0 bg-mesh-gradient opacity-20"></div>
-                        <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center h-full">
-                            <div class="flex-1">
-                                <div
-                                    class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                                    <span class="material-symbols-outlined text-2xl">monitoring</span>
-                                </div>
-                                <h3 class="text-2xl font-bold text-text-main mb-2">即時分析</h3>
-                                <p class="text-text-muted">使用我們的綜合儀表板即時監控代理性能、成本使用和成功率。</p>
+                    <!-- Talent Cards -->
+                    <div>
+                        <div class="flex items-center justify-between mb-8">
+                            <h3 class="text-2xl font-bold text-text-main">專業人才類型</h3>
+                            <div class="flex gap-2">
+                                <button class="talent-prev w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-primary hover:text-primary transition-colors bg-white">
+                                    <span class="material-symbols-outlined text-sm">chevron_left</span>
+                                </button>
+                                <button class="talent-next w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-dark transition-colors">
+                                    <span class="material-symbols-outlined text-sm">chevron_right</span>
+                                </button>
                             </div>
-                            <div class="flex-1 w-full">
-                                <div
-                                    class="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-4 w-full shadow-sm">
-                                    <div class="flex items-end gap-2 h-24 items-end justify-between px-2">
-                                        <div
-                                            class="w-full bg-primary/20 rounded-t h-[40%] group-hover:h-[50%] transition-all duration-700">
-                                        </div>
-                                        <div
-                                            class="w-full bg-primary/30 rounded-t h-[70%] group-hover:h-[60%] transition-all duration-700">
-                                        </div>
-                                        <div
-                                            class="w-full bg-primary/40 rounded-t h-[50%] group-hover:h-[80%] transition-all duration-700">
-                                        </div>
-                                        <div
-                                            class="w-full bg-primary/60 rounded-t h-[80%] group-hover:h-[90%] transition-all duration-700">
-                                        </div>
-                                        <div
-                                            class="w-full bg-primary rounded-t h-[60%] group-hover:h-[100%] transition-all duration-700">
-                                        </div>
+                        </div>
+                        <div class="talent-carousel overflow-hidden">
+                            <div class="talent-slides flex transition-transform duration-500 ease-in-out gap-6">
+                                <!-- Talent Card 1 -->
+                                <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                    <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                                        <span class="material-symbols-outlined text-xl">cloud</span>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-text-main mb-2">雲端架構師</h4>
+                                    <p class="text-text-muted text-sm mb-4">具備AWS、Azure、GCP等雲端平台專業知識，協助企業規劃與建置可擴展的雲端基礎設施。</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded">AWS</span>
+                                        <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded">Kubernetes</span>
+                                        <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded">DevOps</span>
+                                    </div>
+                                </div>
+
+                                <!-- Talent Card 2 -->
+                                <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                    <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-green-50 text-green-600">
+                                        <span class="material-symbols-outlined text-xl">analytics</span>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-text-main mb-2">數據分析師</h4>
+                                    <p class="text-text-muted text-sm mb-4">擅長數據挖掘與分析，運用統計學方法與機器學習技術，提供企業決策洞察與預測分析。</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded">Python</span>
+                                        <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded">SQL</span>
+                                        <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded">Tableau</span>
+                                    </div>
+                                </div>
+
+                                <!-- Talent Card 3 -->
+                                <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                    <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
+                                        <span class="material-symbols-outlined text-xl">web</span>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-text-main mb-2">前端工程師</h4>
+                                    <p class="text-text-muted text-sm mb-4">精通現代前端技術框架，具備優秀的使用者介面設計能力，打造流暢的用戶體驗。</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded">React</span>
+                                        <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded">Vue</span>
+                                        <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded">TypeScript</span>
+                                    </div>
+                                </div>
+
+                                <!-- Talent Card 4 -->
+                                <div class="min-w-[300px] group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                                    <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
+                                        <span class="material-symbols-outlined text-xl">dns</span>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-text-main mb-2">後端工程師</h4>
+                                    <p class="text-text-muted text-sm mb-4">具備扎實的後端開發經驗，熟悉微服務架構與資料庫設計，確保系統穩定性與效能。</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="px-2 py-1 bg-orange-50 text-orange-600 text-xs rounded">Node.js</span>
+                                        <span class="px-2 py-1 bg-orange-50 text-orange-600 text-xs rounded">Java</span>
+                                        <span class="px-2 py-1 bg-orange-50 text-orange-600 text-xs rounded">MongoDB</span>
                                     </div>
                                 </div>
                             </div>
@@ -383,119 +587,255 @@
             </div>
         </section>
 
+        <script>
+            // Tab switching functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetTab = button.getAttribute('data-tab');
+
+                    // Remove active class from all buttons
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-primary', 'text-white');
+                        btn.classList.add('text-gray-600');
+                    });
+
+                    // Add active class to clicked button
+                    button.classList.add('active', 'bg-primary', 'text-white');
+                    button.classList.remove('text-gray-600');
+
+                    // Hide all tab contents
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+
+                    // Show target tab content
+                    const targetContent = document.getElementById(`${targetTab}-content`);
+                    if (targetContent) {
+                        targetContent.classList.remove('hidden');
+                    }
+                });
+            });
+
+            // Initialize first tab as active
+            if (tabButtons.length > 0) {
+                tabButtons[0].classList.add('bg-primary', 'text-white');
+                tabButtons[0].classList.remove('text-gray-600');
+            }
+
+            // Agent Services Carousel
+            const agentCarousel = document.querySelector('.agent-carousel');
+            const agentSlides = document.querySelector('.agent-slides');
+            const agentPrev = document.querySelector('.agent-prev');
+            const agentNext = document.querySelector('.agent-next');
+
+            let agentCurrentIndex = 0;
+            const agentCardsToShow = window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+            const agentTotalCards = document.querySelectorAll('.agent-slides > div').length;
+            const agentMaxIndex = Math.max(0, agentTotalCards - agentCardsToShow);
+
+            if (agentNext && agentPrev) {
+                agentNext.addEventListener('click', () => {
+                    agentCurrentIndex = Math.min(agentCurrentIndex + 1, agentMaxIndex);
+                    updateAgentCarousel();
+                });
+
+                agentPrev.addEventListener('click', () => {
+                    agentCurrentIndex = Math.max(agentCurrentIndex - 1, 0);
+                    updateAgentCarousel();
+                });
+            }
+
+            function updateAgentCarousel() {
+                if (agentSlides) {
+                    const translateX = -agentCurrentIndex * (100 / agentCardsToShow);
+                    agentSlides.style.transform = `translateX(${translateX}%)`;
+
+                    if (agentPrev) agentPrev.style.opacity = agentCurrentIndex === 0 ? '0.5' : '1';
+                    if (agentNext) agentNext.style.opacity = agentCurrentIndex === agentMaxIndex ? '0.5' : '1';
+                }
+            }
+
+            // Custom Projects Carousel
+            const customCarousel = document.querySelector('.custom-carousel');
+            const customSlides = document.querySelector('.custom-slides');
+            const customPrev = document.querySelector('.custom-prev');
+            const customNext = document.querySelector('.custom-next');
+
+            let customCurrentIndex = 0;
+            const customCardsToShow = window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+            const customTotalCards = document.querySelectorAll('.custom-slides > div').length;
+            const customMaxIndex = Math.max(0, customTotalCards - customCardsToShow);
+
+            if (customNext && customPrev) {
+                customNext.addEventListener('click', () => {
+                    customCurrentIndex = Math.min(customCurrentIndex + 1, customMaxIndex);
+                    updateCustomCarousel();
+                });
+
+                customPrev.addEventListener('click', () => {
+                    customCurrentIndex = Math.max(customCurrentIndex - 1, 0);
+                    updateCustomCarousel();
+                });
+            }
+
+            function updateCustomCarousel() {
+                if (customSlides) {
+                    const translateX = -customCurrentIndex * (100 / customCardsToShow);
+                    customSlides.style.transform = `translateX(${translateX}%)`;
+
+                    if (customPrev) customPrev.style.opacity = customCurrentIndex === 0 ? '0.5' : '1';
+                    if (customNext) customNext.style.opacity = customCurrentIndex === customMaxIndex ? '0.5' : '1';
+                }
+            }
+
+            // Talent Carousel
+            const talentCarousel = document.querySelector('.talent-carousel');
+            const talentSlides = document.querySelector('.talent-slides');
+            const talentPrev = document.querySelector('.talent-prev');
+            const talentNext = document.querySelector('.talent-next');
+
+            let talentCurrentIndex = 0;
+            const talentCardsToShow = window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+            const talentTotalCards = document.querySelectorAll('.talent-slides > div').length;
+            const talentMaxIndex = Math.max(0, talentTotalCards - talentCardsToShow);
+
+            if (talentNext && talentPrev) {
+                talentNext.addEventListener('click', () => {
+                    talentCurrentIndex = Math.min(talentCurrentIndex + 1, talentMaxIndex);
+                    updateTalentCarousel();
+                });
+
+                talentPrev.addEventListener('click', () => {
+                    talentCurrentIndex = Math.max(talentCurrentIndex - 1, 0);
+                    updateTalentCarousel();
+                });
+            }
+
+            function updateTalentCarousel() {
+                if (talentSlides) {
+                    const translateX = -talentCurrentIndex * (100 / talentCardsToShow);
+                    talentSlides.style.transform = `translateX(${translateX}%)`;
+
+                    if (talentPrev) talentPrev.style.opacity = talentCurrentIndex === 0 ? '0.5' : '1';
+                    if (talentNext) talentNext.style.opacity = talentCurrentIndex === talentMaxIndex ? '0.5' : '1';
+                }
+            }
+
+            // Initialize carousels
+            updateAgentCarousel();
+            updateCustomCarousel();
+            updateTalentCarousel();
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                location.reload(); // Simple solution to recalculate on resize
+            });
+        </script>
+
         </section>
         <section class="py-24 bg-background-soft border-t border-gray-100">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                    <div class="max-w-3xl">
-                        <span class="text-primary font-bold tracking-wider text-sm uppercase mb-2 block">客戶案例</span>
-                        <h2 class="text-3xl font-bold tracking-tight text-text-main sm:text-4xl mb-4">受到<span
-                                class="gradient-text">前瞻思想家</span>的信賴</h2>
-                        <p class="text-lg text-text-muted">了解企業如何運用 Goyo 代理來擴展營運規模。</p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button
-                            class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:border-primary hover:text-primary transition-colors bg-white">
-                            <span class="material-symbols-outlined">arrow_back</span>
-                        </button>
-                        <button
-                            class="w-12 h-12 rounded-full bg-text-main text-white flex items-center justify-center hover:bg-primary transition-colors shadow-lg shadow-primary/20">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </button>
-                    </div>
+                <div class="text-center mb-16">
+                    <span class="text-primary font-bold tracking-wider text-sm uppercase mb-2 block">客戶案例</span>
+                    <h2 class="text-3xl font-bold tracking-tight text-text-main sm:text-4xl mb-4">受到<span
+                            class="gradient-text">前瞻思想家</span>的信賴</h2>
+                    <p class="text-lg text-text-muted">了解企業如何運用 Goyo 代理來擴展營運規模。</p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div
-                        class="col-span-1 md:col-span-2 group relative overflow-hidden rounded-xl bg-white p-8 shadow-sm border border-gray-100 transition-all hover:shadow-md hover:border-primary/30">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity">
-                        </div>
-                        <div
-                            class="absolute top-8 right-8 text-secondary/30 group-hover:text-secondary/50 transition-colors pointer-events-none">
-                            <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
-                            </svg>
-                        </div>
-                        <div class="relative z-10 flex flex-col h-full justify-between gap-8">
-                            <p class="text-lg font-medium text-text-main leading-relaxed">
+
+                <!-- Floating Testimonials Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial Card 1 -->
+                    <div class="testimonial-card group relative bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 shadow-xl border-2 border-primary/20 hover:shadow-2xl text-white overflow-hidden transition-all duration-700 hover:-translate-y-3 hover:rotate-1">
+                        <!-- Animated background -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-xl group-hover:scale-150 transition-all duration-1000"></div>
+
+                        <div class="relative z-10">
+                            <div class="flex text-yellow-300 mb-4">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                            </div>
+
+                            <p class="text-white/95 leading-relaxed mb-6 min-h-[120px]">
                                 "能夠上傳我們完整的技術文件，讓代理在幾秒鐘內準備好回答查詢，這真是令人驚嘆。它將我們新工程師的入職時間縮短了 40%。"
                             </p>
-                            <div class="flex items-center gap-4">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center text-blue-600 font-bold text-lg">
+
+                            <div class="flex items-center gap-4 pt-4 border-t border-white/20">
+                                <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center font-bold text-lg">
                                     JD
                                 </div>
                                 <div>
-                                    <div class="font-bold text-text-main">James Delaney</div>
-                                    <div class="text-sm text-gray-500">工程副總裁, TechFlow</div>
+                                    <div class="font-bold text-white">James Delaney</div>
+                                    <div class="text-sm text-white/70">工程副總裁, TechFlow</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="bg-primary text-white rounded-xl p-8 shadow-lg relative overflow-hidden flex flex-col justify-between gap-6 group">
-                        <div
-                            class="absolute -right-4 -top-4 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-all">
-                        </div>
+
+                    <!-- Testimonial Card 2 -->
+                    <div class="testimonial-card group relative bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 shadow-xl border-2 border-primary/20 hover:shadow-2xl text-white overflow-hidden transition-all duration-700 hover:-translate-y-3 hover:-rotate-1">
+                        <!-- Animated background -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-xl group-hover:scale-150 transition-all duration-1000"></div>
+
                         <div class="relative z-10">
                             <div class="flex text-yellow-300 mb-4">
-                                <span class="material-symbols-outlined text-sm fill-current">star</span>
-                                <span class="material-symbols-outlined text-sm fill-current">star</span>
-                                <span class="material-symbols-outlined text-sm fill-current">star</span>
-                                <span class="material-symbols-outlined text-sm fill-current">star</span>
-                                <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
                             </div>
-                            <p class="text-lg font-medium leading-relaxed opacity-90">
-                                "Goyo 的安全協議讓我們有信心在法務部門部署 AI。準確度無與倫比。"
+
+                            <p class="text-white/95 leading-relaxed mb-6 min-h-[120px]">
+                                "Goyo 的安全協議讓我們有信心在法務部門部署 AI。準確度無與倫比，完全符合我們的合規要求。"
                             </p>
-                        </div>
-                        <div class="flex items-center gap-3 relative z-10">
-                            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold">
-                                AR
-                            </div>
-                            <div>
-                                <div class="font-bold text-sm">Amanda Ross</div>
-                                <div class="text-xs opacity-70">法務營運, FinCorp</div>
+
+                            <div class="flex items-center gap-4 pt-4 border-t border-white/20">
+                                <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center font-bold text-lg">
+                                    AR
+                                </div>
+                                <div>
+                                    <div class="font-bold text-white">Amanda Ross</div>
+                                    <div class="text-sm text-white/70">法務營運, FinCorp</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="group relative overflow-hidden rounded-xl bg-white p-8 shadow-sm border border-gray-100 flex flex-col justify-between gap-6 transition-all hover:shadow-md hover:border-primary/30">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        </div>
+
+                    <!-- Testimonial Card 3 -->
+                    <div class="testimonial-card group relative bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 shadow-xl border-2 border-primary/20 hover:shadow-2xl text-white overflow-hidden transition-all duration-700 hover:-translate-y-3 hover:rotate-1">
+                        <!-- Animated background -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-xl group-hover:scale-150 transition-all duration-1000"></div>
+
                         <div class="relative z-10">
-                            <p class="text-text-muted leading-relaxed">
-                                "我們完全自動化了一級客戶支援。需要時轉交給人工客服的過程非常流暢。"
+                            <div class="flex text-yellow-300 mb-4">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                            </div>
+
+                            <p class="text-white/95 leading-relaxed mb-6 min-h-[120px]">
+                                "我們完全自動化了一級客戶支援。需要時轉交給人工客服的過程非常流暢，客戶滿意度提升了35%。"
                             </p>
-                            <div class="flex items-center gap-3">
-                                <div
-                                    class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center text-purple-600 font-bold">
+
+                            <div class="flex items-center gap-4 pt-4 border-t border-white/20">
+                                <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center font-bold text-lg">
                                     MK
                                 </div>
                                 <div>
-                                    <div class="font-bold text-text-main text-sm">Michael Kim</div>
-                                    <div class="text-sm text-text-muted">客戶體驗主管, Retailio</div>
+                                    <div class="font-bold text-white">Michael Kim</div>
+                                    <div class="text-sm text-white/70">客戶體驗主管, Retailio</div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="col-span-1 md:col-span-2 group relative overflow-hidden rounded-xl bg-gradient-to-r from-secondary/20 to-transparent p-8 border border-secondary/20 flex flex-col md:flex-row items-center gap-8 transition-all hover:border-secondary/40">
-                        <div class="flex-1">
-                            <p class="text-lg font-medium text-text-main italic">
-                                "實作花費不到一週時間。預建的 Slack 和 Notion 連接器為我們節省了數個月的開發時間。"
-                            </p>
-                        </div>
-                        <div
-                            class="flex items-center gap-4 min-w-max border-t md:border-t-0 md:border-l border-secondary/30 pt-4 md:pt-0 md:pl-6">
-                            <div
-                                class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary font-bold shadow-sm">
-                                SL
-                            </div>
-                            <div>
-                                <div class="font-bold text-text-main">Sarah Lee</div>
-                                <div class="text-sm text-text-muted">技術長, StartUp Inc</div>
                             </div>
                         </div>
                     </div>
@@ -527,7 +867,7 @@
                                 class="flex h-12 min-w-[160px] items-center justify-center rounded-xl bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary-dark transition-all active:scale-95">
                                 預約演示
                             </button>
-                            <button
+                            <button id="contact-sales-btn"
                                 class="flex h-12 min-w-[160px] items-center justify-center rounded-xl border border-gray-600 bg-transparent px-8 text-base font-bold text-white hover:bg-white/10 transition-all active:scale-95">
                                 聯繫銷售
                             </button>
@@ -536,6 +876,66 @@
                 </div>
             </div>
         </section>
+
+        <!-- Contact Sales Modal -->
+        <div id="contact-sales-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+            <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 transform transition-all duration-300 scale-95 opacity-0" id="contact-modal-content">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900">聯繫銷售團隊</h3>
+                    <button id="close-contact-modal" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
+                        <span class="material-symbols-outlined text-gray-600 text-sm">close</span>
+                    </button>
+                </div>
+
+                <!-- Email Contacts -->
+                <div class="space-y-4 mb-6">
+                    <div class="bg-primary/5 rounded-xl p-4 border border-primary/10">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-sm">person</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">業務聯繫</h4>
+                                <p class="text-sm text-gray-600">產品諮詢與方案規劃</p>
+                            </div>
+                        </div>
+                        <a href="mailto:yenting@goyo-tech.com" class="flex items-center gap-2 text-primary hover:text-primary-dark transition-colors font-medium">
+                            <span class="material-symbols-outlined text-sm">mail</span>
+                            yenting@goyo-tech.com
+                        </a>
+                    </div>
+
+                    <div class="bg-secondary/5 rounded-xl p-4 border border-secondary/10">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-secondary text-sm">engineering</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">技術支援</h4>
+                                <p class="text-sm text-gray-600">技術諮詢與系統整合</p>
+                            </div>
+                        </div>
+                        <a href="mailto:cy.hsu@goyo-tech.com" class="flex items-center gap-2 text-secondary hover:text-secondary/80 transition-colors font-medium">
+                            <span class="material-symbols-outlined text-sm">mail</span>
+                            cy.hsu@goyo-tech.com
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="bg-gray-50 rounded-lg p-4 text-center">
+                    <p class="text-sm text-gray-600 mb-2">
+                        <span class="material-symbols-outlined text-primary text-sm mr-1 inline-block">schedule</span>
+                        我們將在24小時內回覆您
+                    </p>
+                    <p class="text-xs text-gray-500">
+                        或直接點擊郵箱地址開啟您的郵件應用程式
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <footer class="border-t border-gray-100 bg-white pt-16 pb-8">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -631,6 +1031,52 @@
                     recipientEmail: 'cy.hsu@goyo-tech.com'
                 });
             }
+
+            // Contact Sales Modal Functionality
+            const contactSalesBtn = document.getElementById('contact-sales-btn');
+            const contactModal = document.getElementById('contact-sales-modal');
+            const contactModalContent = document.getElementById('contact-modal-content');
+            const closeContactModal = document.getElementById('close-contact-modal');
+
+            // Show modal function
+            function showContactModal() {
+                contactModal.classList.remove('hidden');
+                // Trigger animation after showing
+                setTimeout(() => {
+                    contactModalContent.classList.remove('scale-95', 'opacity-0');
+                    contactModalContent.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+
+            // Hide modal function
+            function hideContactModal() {
+                contactModalContent.classList.remove('scale-100', 'opacity-100');
+                contactModalContent.classList.add('scale-95', 'opacity-0');
+                // Hide after animation
+                setTimeout(() => {
+                    contactModal.classList.add('hidden');
+                }, 300);
+            }
+
+            // Event listeners
+            if (contactSalesBtn) contactSalesBtn.addEventListener('click', showContactModal);
+            if (closeContactModal) closeContactModal.addEventListener('click', hideContactModal);
+
+            // Close modal when clicking backdrop
+            if (contactModal) {
+                contactModal.addEventListener('click', function(e) {
+                    if (e.target === contactModal) {
+                        hideContactModal();
+                    }
+                });
+            }
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && contactModal && !contactModal.classList.contains('hidden')) {
+                    hideContactModal();
+                }
+            });
         });
     </script>
 

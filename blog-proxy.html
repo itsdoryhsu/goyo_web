@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Goyo Tech - Blog</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
-<!-- Chinese Fonts - Chiron Hei HK -->
-<link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chiron+Hei+HK:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Shared Styles -->
-<link rel="stylesheet" href="shared/styles.css"/>
-<!-- Notion API Proxy -->
-<script src="shared/notion-api-proxy.js"></script>
-<script id="tailwind-config">
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Goyo Tech - Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chiron+Hei+HK:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="shared/styles.css"/>
+    <script src="shared/notion-api-proxy.js"></script>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -46,7 +44,7 @@
             },
         }
     </script>
-<style>
+    <style>
         .text-gradient {
             background: linear-gradient(135deg, #977eff 0%, #7b61ff 100%);
             -webkit-background-clip: text;
@@ -60,110 +58,74 @@
 </head>
 <body class="font-display bg-background-light text-text-main antialiased selection:bg-primary selection:text-white">
 
-<!-- Header (直接內嵌) -->
-<header class="sticky top-0 z-50 w-full border-b border-[#f0f0f5] bg-white/90 backdrop-blur-md">
-<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-<div class="flex items-center gap-4">
-<div class="flex size-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-<span class="material-symbols-outlined text-[28px]">smart_toy</span>
-</div>
-<h2 class="text-xl font-bold tracking-tight text-text-main">Goyo Tech</h2>
-</div>
-<nav class="hidden md:flex flex-1 justify-center gap-10">
-<a class="text-sm font-medium text-text-muted hover:text-primary transition-colors" href="about_us.html">關於我們</a>
-<a class="text-sm font-medium text-text-muted hover:text-primary transition-colors" href="product_landing.html">解決方案</a>
-<a class="text-sm font-medium text-text-muted hover:text-primary transition-colors" href="#">企業方案</a>
-<a class="text-sm font-semibold text-text-main hover:text-primary transition-colors" href="blog-proxy.html">部落格</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="hidden sm:flex h-11 items-center justify-center rounded-2xl bg-text-main px-6 text-sm font-bold text-white transition-all hover:bg-primary hover:shadow-lg hover:-translate-y-0.5">
-                聯絡我們
-            </button>
-<button class="flex md:hidden text-text-main">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</div>
-</header>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('shared/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('afterbegin', data);
+                if (typeof setActiveNav === 'function') {
+                    setActiveNav('blog');
+                }
+            })
+            .catch(error => console.error('Error loading header:', error));
+    });
+</script>
 
 <main class="bg-background-light">
-<section class="relative overflow-hidden pt-16 pb-12 lg:pt-24 lg:pb-16 bg-soft-gradient">
-<div class="absolute top-20 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-accent/20 blur-3xl opacity-60"></div>
-<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-<h1 class="text-4xl font-black leading-tight tracking-tight text-text-main sm:text-5xl lg:text-6xl">
-                    來自 <span class="text-gradient">AI 未來</span> 的洞察
-                </h1>
-<p class="mt-6 text-lg text-text-muted max-w-2xl mx-auto">
-                    探索我們在AI和企業技術前沿的最新文章、深入分析和公司動態。
-                </p>
-</div>
-</section>
+    <section class="relative overflow-hidden pt-32 pb-12 lg:pt-48 lg:pb-16 bg-soft-gradient">
+        <div class="absolute top-20 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-accent/20 blur-3xl opacity-60"></div>
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-black leading-tight tracking-tight text-text-main sm:text-5xl lg:text-6xl">
+                <span class="text-gradient">果友</span> 的一些小分享
+            </h1>
+            <p class="mt-6 text-lg text-text-muted max-w-2xl mx-auto">
+                不管是我們自己在專案面、營運面或是創業上的一些心路歷程，想要透過文字幫自己做個紀錄、同時也分享給大家 ：）
+            </p>
+        </div>
+    </section>
 
-<section class="py-16 sm:py-24">
-<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
-<div class="flex-1">
-<div class="mb-12">
-<div class="relative max-w-lg mx-auto lg:mx-0">
-<input id="searchInput" class="w-full h-14 rounded-2xl border border-gray-200 bg-white pl-14 pr-6 text-base text-text-main placeholder:text-text-subtle focus:border-primary focus:ring-4 focus:ring-primary/10" placeholder="搜尋文章..." type="search"/>
-<div class="absolute left-5 top-1/2 -translate-y-1/2 text-text-subtle">
-<span class="material-symbols-outlined">search</span>
-</div>
-</div>
-</div>
+    <section class="py-16 sm:py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col gap-12">
+                
+                <div class="mb-8">
+                    <div class="relative max-w-lg mx-auto">
+                        <input id="searchInput" class="w-full h-14 rounded-2xl border border-gray-200 bg-white pl-14 pr-6 text-base text-text-main placeholder:text-text-subtle focus:border-primary focus:ring-4 focus:ring-primary/10" placeholder="搜尋文章..." type="search"/>
+                        <div class="absolute left-5 top-1/2 -translate-y-1/2 text-text-subtle">
+                            <span class="material-symbols-outlined">search</span>
+                        </div>
+                    </div>
+                </div>
 
-<!-- Articles Container -->
-<div id="blog-posts" class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-2">
-<!-- 載入中狀態 -->
-<div class="col-span-full flex justify-center py-16">
-    <div class="flex items-center gap-3 text-text-muted">
-        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-        <span>載入文章中...</span>
-    </div>
-</div>
-</div>
-</div>
-
-<aside class="w-full lg:w-80 lg:shrink-0 lg:sticky lg:top-32">
-<div class="space-y-10">
-<div>
-<h3 class="mb-6 text-xl font-bold text-text-main">分類</h3>
-<ul id="categories-list" class="space-y-4">
-<li class="text-text-subtle">載入中...</li>
-</ul>
-</div>
-<div>
-<h3 class="mb-6 text-xl font-bold text-text-main">熱門文章</h3>
-<div id="popular-posts" class="space-y-6">
-<div class="text-text-subtle">載入中...</div>
-</div>
-</div>
-<div class="rounded-2xl bg-gradient-to-br from-primary to-primary-dark p-8 text-white shadow-soft">
-<div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 text-white mb-4">
-<span class="material-symbols-outlined">mail</span>
-</div>
-<h3 class="text-2xl font-bold">保持更新</h3>
-<p class="mt-2 mb-6 text-primary/70">
-                        訂閱我們的電子報，獲取AI和企業科技的最新資訊。
-                    </p>
-<form class="flex flex-col gap-4">
-<input class="h-12 w-full rounded-xl border-0 bg-white/20 px-4 text-white placeholder:text-white/60 focus:ring-2 focus:ring-white/80" placeholder="輸入您的Email" type="email"/>
-<button class="h-12 w-full rounded-xl bg-white text-primary font-bold transition-all hover:bg-accent hover:text-primary-dark" type="submit">
-                        訂閱
-                    </button>
-</form>
-</div>
-</div>
-</aside>
-</div>
-</div>
-</section>
+                <div id="blog-posts" class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="col-span-full flex justify-center py-16">
+                        <div class="flex items-center gap-3 text-text-muted">
+                            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                            <span>載入文章中...</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('shared/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('beforeend', data);
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    });
+</script>
 
 <script>
 let blogAPI;
 let allPosts = [];
-let categories = [];
 
 // 初始化
 document.addEventListener('DOMContentLoaded', async function() {
@@ -179,23 +141,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 // 載入blog數據
 async function loadBlogData() {
     try {
-        // 同時載入文章和分類
-        const [posts, cats] = await Promise.all([
-            blogAPI.getPosts(),
-            blogAPI.getCategories()
-        ]);
-
+        const posts = await blogAPI.getPosts();
         allPosts = posts;
-        categories = cats;
-
-        // 渲染內容
         renderPosts(posts);
-        renderCategories(cats);
-        renderPopularPosts(posts.slice(0, 3));
-
-        // 設置搜尋功能
         setupSearch();
-
     } catch (error) {
         console.error('載入數據失敗:', error);
         showError('載入文章失敗，請稍後再試');
@@ -246,51 +195,6 @@ function renderPosts(posts) {
     container.innerHTML = articlesHTML;
 }
 
-// 渲染分類
-function renderCategories(categories) {
-    const container = document.getElementById('categories-list');
-    if (!categories || categories.length === 0) {
-        container.innerHTML = '<li class="text-text-subtle">暫無分類</li>';
-        return;
-    }
-
-    const categoriesHTML = categories.map(cat => `
-        <li>
-            <button onclick="filterByCategory('${cat.name}')"
-                    class="group w-full flex justify-between rounded-lg p-3 transition-colors hover:bg-primary/5 text-left">
-                <span class="font-semibold text-text-main group-hover:text-primary">${cat.name}</span>
-                <span class="text-sm font-medium text-text-subtle group-hover:text-primary">${cat.count}</span>
-            </button>
-        </li>
-    `).join('');
-
-    container.innerHTML = categoriesHTML;
-}
-
-// 渲染熱門文章
-function renderPopularPosts(posts) {
-    const container = document.getElementById('popular-posts');
-    if (!posts || posts.length === 0) {
-        container.innerHTML = '<div class="text-text-subtle">暫無文章</div>';
-        return;
-    }
-
-    const popularHTML = posts.map(post => `
-        <a class="group flex items-start gap-4" href="${post.url}">
-            <img alt="${post.title}"
-                 class="h-16 w-16 shrink-0 rounded-xl object-cover"
-                 src="${post.featuredImage || getDefaultImage(post.category)}"
-                 onerror="this.src='${getDefaultImage(post.category)}'"/>
-            <div>
-                <h4 class="font-bold text-text-main leading-tight group-hover:text-primary">${post.title}</h4>
-                <p class="mt-1 text-xs text-text-subtle">${formatDate(post.publishedDate)}</p>
-            </div>
-        </a>
-    `).join('');
-
-    container.innerHTML = popularHTML;
-}
-
 // 搜尋功能
 function setupSearch() {
     const searchInput = document.getElementById('searchInput');
@@ -313,12 +217,6 @@ function setupSearch() {
             console.error('搜尋失敗:', error);
         }
     }, 300));
-}
-
-// 分類過濾
-function filterByCategory(categoryName) {
-    const filtered = allPosts.filter(post => post.category === categoryName);
-    renderPosts(filtered);
 }
 
 // 工具函數
@@ -373,4 +271,22 @@ function debounce(func, wait) {
 }
 </script>
 
-</body></html>
+<script src="shared/demo-modal.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(() => {
+            const demoModal = new DemoModal({
+                googleFormUrl: 'https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse',
+                fieldMapping: {
+                    name: 'entry.123456789',
+                    email: 'entry.987654321',
+                    company: 'entry.456789123',
+                    usecase: 'entry.789123456'
+                }
+            });
+        }, 500);
+    });
+</script>
+
+</body>
+</html>

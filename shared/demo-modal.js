@@ -127,12 +127,21 @@ class DemoModal {
         const demoButtons = document.querySelectorAll('[data-demo-button]');
         console.log('Found demo buttons:', demoButtons.length);
 
-        demoButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
+        demoButtons.forEach((button, index) => {
+            // 避免重複綁定，先移除之前的事件監聽器
+            if (button.demoClickHandler) {
+                button.removeEventListener('click', button.demoClickHandler);
+            }
+
+            // 創建新的事件處理器
+            button.demoClickHandler = (e) => {
                 e.preventDefault();
-                console.log('Demo button clicked');
+                console.log('Demo button clicked:', index);
                 this.open();
-            });
+            };
+
+            // 綁定新的事件處理器
+            button.addEventListener('click', button.demoClickHandler);
         });
     }
 
