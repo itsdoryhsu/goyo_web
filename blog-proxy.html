@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Goyo Tech - Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Chinese Fonts - Chiron Hei HK -->
+<link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chiron+Hei+HK:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Shared Styles -->
+<link rel="stylesheet" href="shared/styles.css"/>
+<!-- Notion API Proxy -->
+<script src="shared/notion-api-proxy.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#977eff",
+                        "primary-dark": "#7b61ff",
+                        "accent": "#ffcdf2",
+                        "accent-light": "#fff0f9",
+                        "background-light": "#ffffff",
+                        "background-alt": "#f8f9fa",
+                        "text-main": "#100c1d",
+                        "text-muted": "#5745a1",
+                        "text-subtle": "#6b7280",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "3xl": "1.5rem","full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 20px 40px -10px rgba(151, 126, 255, 0.15)",
+                        "glass": "0 8px 32px 0 rgba(31, 38, 135, 0.05)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .text-gradient {
+            background: linear-gradient(135deg, #977eff 0%, #7b61ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-soft-gradient {
+            background: radial-gradient(circle at top right, #fff0fa 0%, rgba(255,255,255,0) 50%),
+                        radial-gradient(circle at bottom left, #f3f0ff 0%, rgba(255,255,255,0) 50%);
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light text-text-main antialiased selection:bg-primary selection:text-white">
+
+<!-- Header (直接內嵌) -->
+<header class="sticky top-0 z-50 w-full border-b border-[#f0f0f5] bg-white/90 backdrop-blur-md">
+<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+<div class="flex items-center gap-4">
+<div class="flex size-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[28px]">smart_toy</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-text-main">Goyo Tech</h2>
+</div>
+<nav class="hidden md:flex flex-1 justify-center gap-10">
+<a class="text-sm font-medium text-text-muted hover:text-primary transition-colors" href="about_us.html">關於我們</a>
+<a class="text-sm font-medium text-text-muted hover:text-primary transition-colors" href="product_landing.html">解決方案</a>
+<a class="text-sm font-medium text-text-muted hover:text-primary transition-colors" href="#">企業方案</a>
+<a class="text-sm font-semibold text-text-main hover:text-primary transition-colors" href="blog-proxy.html">部落格</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex h-11 items-center justify-center rounded-2xl bg-text-main px-6 text-sm font-bold text-white transition-all hover:bg-primary hover:shadow-lg hover:-translate-y-0.5">
+                聯絡我們
+            </button>
+<button class="flex md:hidden text-text-main">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+
+<main class="bg-background-light">
+<section class="relative overflow-hidden pt-16 pb-12 lg:pt-24 lg:pb-16 bg-soft-gradient">
+<div class="absolute top-20 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-accent/20 blur-3xl opacity-60"></div>
+<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+<h1 class="text-4xl font-black leading-tight tracking-tight text-text-main sm:text-5xl lg:text-6xl">
+                    來自 <span class="text-gradient">AI 未來</span> 的洞察
+                </h1>
+<p class="mt-6 text-lg text-text-muted max-w-2xl mx-auto">
+                    探索我們在AI和企業技術前沿的最新文章、深入分析和公司動態。
+                </p>
+</div>
+</section>
+
+<section class="py-16 sm:py-24">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
+<div class="flex-1">
+<div class="mb-12">
+<div class="relative max-w-lg mx-auto lg:mx-0">
+<input id="searchInput" class="w-full h-14 rounded-2xl border border-gray-200 bg-white pl-14 pr-6 text-base text-text-main placeholder:text-text-subtle focus:border-primary focus:ring-4 focus:ring-primary/10" placeholder="搜尋文章..." type="search"/>
+<div class="absolute left-5 top-1/2 -translate-y-1/2 text-text-subtle">
+<span class="material-symbols-outlined">search</span>
+</div>
+</div>
+</div>
+
+<!-- Articles Container -->
+<div id="blog-posts" class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-2">
+<!-- 載入中狀態 -->
+<div class="col-span-full flex justify-center py-16">
+    <div class="flex items-center gap-3 text-text-muted">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        <span>載入文章中...</span>
+    </div>
+</div>
+</div>
+</div>
+
+<aside class="w-full lg:w-80 lg:shrink-0 lg:sticky lg:top-32">
+<div class="space-y-10">
+<div>
+<h3 class="mb-6 text-xl font-bold text-text-main">分類</h3>
+<ul id="categories-list" class="space-y-4">
+<li class="text-text-subtle">載入中...</li>
+</ul>
+</div>
+<div>
+<h3 class="mb-6 text-xl font-bold text-text-main">熱門文章</h3>
+<div id="popular-posts" class="space-y-6">
+<div class="text-text-subtle">載入中...</div>
+</div>
+</div>
+<div class="rounded-2xl bg-gradient-to-br from-primary to-primary-dark p-8 text-white shadow-soft">
+<div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 text-white mb-4">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<h3 class="text-2xl font-bold">保持更新</h3>
+<p class="mt-2 mb-6 text-primary/70">
+                        訂閱我們的電子報，獲取AI和企業科技的最新資訊。
+                    </p>
+<form class="flex flex-col gap-4">
+<input class="h-12 w-full rounded-xl border-0 bg-white/20 px-4 text-white placeholder:text-white/60 focus:ring-2 focus:ring-white/80" placeholder="輸入您的Email" type="email"/>
+<button class="h-12 w-full rounded-xl bg-white text-primary font-bold transition-all hover:bg-accent hover:text-primary-dark" type="submit">
+                        訂閱
+                    </button>
+</form>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</section>
+</main>
+
+<script>
+let blogAPI;
+let allPosts = [];
+let categories = [];
+
+// 初始化
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        blogAPI = new NotionBlogAPIProxy();
+        await loadBlogData();
+    } catch (error) {
+        console.error('初始化失敗:', error);
+        showError('載入blog內容時發生錯誤');
+    }
+});
+
+// 載入blog數據
+async function loadBlogData() {
+    try {
+        // 同時載入文章和分類
+        const [posts, cats] = await Promise.all([
+            blogAPI.getPosts(),
+            blogAPI.getCategories()
+        ]);
+
+        allPosts = posts;
+        categories = cats;
+
+        // 渲染內容
+        renderPosts(posts);
+        renderCategories(cats);
+        renderPopularPosts(posts.slice(0, 3));
+
+        // 設置搜尋功能
+        setupSearch();
+
+    } catch (error) {
+        console.error('載入數據失敗:', error);
+        showError('載入文章失敗，請稍後再試');
+    }
+}
+
+// 渲染文章列表
+function renderPosts(posts) {
+    const container = document.getElementById('blog-posts');
+
+    if (!posts || posts.length === 0) {
+        container.innerHTML = `
+            <div class="col-span-full text-center py-16">
+                <div class="text-6xl mb-4">📝</div>
+                <h3 class="text-xl font-semibold text-text-main mb-2">還沒有文章</h3>
+                <p class="text-text-muted">請稍後再來查看最新內容。</p>
+            </div>
+        `;
+        return;
+    }
+
+    const articlesHTML = posts.map(post => `
+        <article class="group flex flex-col overflow-hidden">
+            <a class="block overflow-hidden rounded-2xl" href="${post.url}">
+                <img alt="${post.title}"
+                     class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                     src="${post.featuredImage || getDefaultImage(post.category)}"
+                     onerror="this.src='${getDefaultImage(post.category)}'"/>
+            </a>
+            <div class="mt-6 flex flex-col">
+                <div class="mb-3 flex items-center gap-4 text-sm font-medium text-text-subtle">
+                    <span>${formatDate(post.publishedDate)}</span>
+                    <span class="text-primary">•</span>
+                    <span class="text-primary">${post.category}</span>
+                    <span class="text-primary">•</span>
+                    <span>${post.readTime} 分鐘閱讀</span>
+                </div>
+                <h2 class="text-xl font-bold text-text-main group-hover:text-primary transition-colors">
+                    <a href="${post.url}">${post.title}</a>
+                </h2>
+                <p class="mt-3 text-base leading-relaxed text-text-subtle">
+                    ${post.excerpt || '點擊閱讀全文...'}
+                </p>
+            </div>
+        </article>
+    `).join('');
+
+    container.innerHTML = articlesHTML;
+}
+
+// 渲染分類
+function renderCategories(categories) {
+    const container = document.getElementById('categories-list');
+    if (!categories || categories.length === 0) {
+        container.innerHTML = '<li class="text-text-subtle">暫無分類</li>';
+        return;
+    }
+
+    const categoriesHTML = categories.map(cat => `
+        <li>
+            <button onclick="filterByCategory('${cat.name}')"
+                    class="group w-full flex justify-between rounded-lg p-3 transition-colors hover:bg-primary/5 text-left">
+                <span class="font-semibold text-text-main group-hover:text-primary">${cat.name}</span>
+                <span class="text-sm font-medium text-text-subtle group-hover:text-primary">${cat.count}</span>
+            </button>
+        </li>
+    `).join('');
+
+    container.innerHTML = categoriesHTML;
+}
+
+// 渲染熱門文章
+function renderPopularPosts(posts) {
+    const container = document.getElementById('popular-posts');
+    if (!posts || posts.length === 0) {
+        container.innerHTML = '<div class="text-text-subtle">暫無文章</div>';
+        return;
+    }
+
+    const popularHTML = posts.map(post => `
+        <a class="group flex items-start gap-4" href="${post.url}">
+            <img alt="${post.title}"
+                 class="h-16 w-16 shrink-0 rounded-xl object-cover"
+                 src="${post.featuredImage || getDefaultImage(post.category)}"
+                 onerror="this.src='${getDefaultImage(post.category)}'"/>
+            <div>
+                <h4 class="font-bold text-text-main leading-tight group-hover:text-primary">${post.title}</h4>
+                <p class="mt-1 text-xs text-text-subtle">${formatDate(post.publishedDate)}</p>
+            </div>
+        </a>
+    `).join('');
+
+    container.innerHTML = popularHTML;
+}
+
+// 搜尋功能
+function setupSearch() {
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', debounce(async (e) => {
+        const query = e.target.value.trim();
+
+        if (query.length === 0) {
+            renderPosts(allPosts);
+            return;
+        }
+
+        if (query.length < 2) return;
+
+        try {
+            const results = await blogAPI.searchPosts(query);
+            renderPosts(results);
+        } catch (error) {
+            console.error('搜尋失敗:', error);
+        }
+    }, 300));
+}
+
+// 分類過濾
+function filterByCategory(categoryName) {
+    const filtered = allPosts.filter(post => post.category === categoryName);
+    renderPosts(filtered);
+}
+
+// 工具函數
+function formatDate(dateString) {
+    if (!dateString) return '未知日期';
+
+    try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('zh-TW', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    } catch (error) {
+        return dateString;
+    }
+}
+
+function getDefaultImage(category) {
+    const images = {
+        'AI News': 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop',
+        'Tech Documents': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=250&fit=crop',
+        'Company News': 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=250&fit=crop',
+        'Culture': 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop',
+        'default': 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=250&fit=crop'
+    };
+
+    return images[category] || images.default;
+}
+
+function showError(message) {
+    const container = document.getElementById('blog-posts');
+    container.innerHTML = `
+        <div class="col-span-full text-center py-16">
+            <div class="text-6xl mb-4">⚠️</div>
+            <h3 class="text-xl font-semibold text-text-main mb-2">發生錯誤</h3>
+            <p class="text-text-muted">${message}</p>
+        </div>
+    `;
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+</script>
+
+</body></html>

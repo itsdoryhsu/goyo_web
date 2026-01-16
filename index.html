@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Goyo Tech - 可擴展 AI 解決方案</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Chinese Fonts - Chiron Hei HK -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chiron+Hei+HK:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet" />
+    <!-- Material Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="shared/styles.css" />
+    <!-- Theme Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#9980ff",
+                        "primary-dark": "#7a66cc",
+                        "secondary": "#6366f1",
+                        "accent": "#ffcdf2",
+                        "background-light": "#ffffff",
+                        "background-dark": "#130f23",
+                        "background-soft": "#fafafa",
+                        "text-main": "#100c1d",
+                        "text-muted": "#6b7280",
+                    },
+                    fontFamily: {
+                        "display": ["Chiron Hei HK", "Inter", "sans-serif"],
+                        "body": ["Chiron Hei HK", "Inter", "sans-serif"],
+                        "sans": ["Chiron Hei HK", "Inter", "system-ui", "sans-serif"],
+                        "chinese": ["Chiron Hei HK", "sans-serif"],
+                        "tc": ["Chiron Hei HK", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'mesh-gradient': 'radial-gradient(at 27% 37%, #ffcdf2 0px, transparent 50%), radial-gradient(at 97% 21%, #e0e7ff 0px, transparent 50%), radial-gradient(at 52% 99%, #f3e8ff 0px, transparent 50%)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #9980ff 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .shadow-soft {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-main font-display antialiased overflow-x-hidden selection:bg-primary/30 selection:text-primary-dark">
+    <!-- Background Mesh Gradients -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-accent/30 blur-[100px]"></div>
+        <div class="absolute top-[10%] right-[-5%] w-[40%] h-[60%] rounded-full bg-primary/10 blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] left-[20%] w-[60%] h-[40%] rounded-full bg-accent/20 blur-[120px]"></div>
+    </div>
+    <div class="relative z-10 flex flex-col min-h-screen">
+        <!-- Include shared header -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('shared/header.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.querySelector('.relative.z-10').insertAdjacentHTML('afterbegin', data);
+                        // Set active page after header is loaded
+                        if (typeof setActiveNav === 'function') {
+                            setActiveNav('home');
+                        }
+                    })
+                    .catch(error => console.error('Error loading header:', error));
+            });
+        </script>
+        <!-- Hero Section -->
+        <section class="relative pt-16 pb-20 lg:pt-32 lg:pb-28">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
+                    <!-- Hero Content -->
+                    <div class="flex flex-col items-start gap-6 lg:max-w-xl">
+                        <div
+                            class="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold text-primary">
+                            <span class="mr-1 flex h-2 w-2 relative">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                            </span>
+                            <span class="font-chinese">新功能：企業代理 API v2.0</span>
+                        </div>
+                        <h1
+                            class="text-4xl font-extrabold tracking-tight text-text-main sm:text-5xl xl:text-6xl heading-chinese">
+                            為<span class="text-primary">企業</span>打造的可擴展 AI 代理解決方案
+                        </h1>
+                        <p class="text-lg text-text-muted leading-relaxed max-w-md body-chinese">
+                            使用專為您的基礎設施設計的安全、智慧代理自動化複雜工作流程。幾分鐘內部署，無限擴展。
+                        </p>
+                        <div class="flex w-full flex-col gap-3 sm:flex-row sm:w-auto mt-2">
+                            <button
+                                class="flex h-12 w-full sm:w-auto items-center justify-center rounded-xl bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary-dark transition-all active:scale-95 font-chinese">
+                                立即開始
+                            </button>
+                            <button
+                                class="flex h-12 w-full sm:w-auto items-center justify-center rounded-xl border border-gray-200 bg-white px-8 text-base font-bold text-text-main hover:bg-gray-50 hover:border-gray-300 transition-all active:scale-95 font-chinese">
+                                <span class="material-symbols-outlined mr-2 text-lg">description</span>
+                                說明文件
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs text-text-muted font-medium mt-2">
+                            <div class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+                                SOC2 Type II
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+                                99.99% Uptime
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+                                GDPR Ready
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Hero Visual -->
+                    <div
+                        class="relative w-full aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-white border border-gray-100 group">
+                        <!-- Abstract UI Representation -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-white to-gray-50 p-6 flex flex-col">
+                            <!-- Mockup Header -->
+                            <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
+                                <div class="flex gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                </div>
+                                <div class="h-2 w-20 bg-gray-100 rounded-full"></div>
+                            </div>
+                            <!-- Mockup Body -->
+                            <div class="flex-1 flex gap-4">
+                                <!-- Sidebar -->
+                                <div
+                                    class="w-16 hidden sm:flex flex-col gap-3 items-center pt-2 border-r border-gray-100 pr-4">
+                                    <div class="w-8 h-8 rounded bg-primary/20"></div>
+                                    <div class="w-8 h-8 rounded bg-gray-100"></div>
+                                    <div class="w-8 h-8 rounded bg-gray-100"></div>
+                                </div>
+                                <!-- Main Content Area -->
+                                <div class="flex-1 space-y-4">
+                                    <div
+                                        class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+                                            <span class="material-symbols-outlined text-sm">smart_toy</span>
+                                        </div>
+                                        <div class="space-y-1">
+                                            <div class="h-2 w-24 bg-gray-200 rounded"></div>
+                                            <div class="h-2 w-32 bg-gray-100 rounded"></div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-3 bg-primary/5 p-3 rounded-lg border border-primary/10">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-white border border-gray-100 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-sm text-gray-400">person</span>
+                                        </div>
+                                        <div class="space-y-1">
+                                            <div class="h-2 w-40 bg-gray-200 rounded"></div>
+                                            <div class="h-2 w-20 bg-gray-100 rounded"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Graph Abstract -->
+                                    <div
+                                        class="mt-6 h-32 w-full rounded-lg bg-gray-50 border border-gray-100 relative overflow-hidden">
+                                        <div
+                                            class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-primary/10 to-transparent">
+                                        </div>
+                                        <svg class="absolute bottom-0 left-0 right-0 w-full h-full text-primary"
+                                            preserveaspectratio="none" viewbox="0 0 100 50">
+                                            <path
+                                                d="M0 50 L10 40 L20 45 L30 30 L40 35 L50 20 L60 25 L70 15 L80 20 L90 5 L100 10 V50 H0 Z"
+                                                fill="currentColor" opacity="0.2"></path>
+                                            <path
+                                                d="M0 50 L10 40 L20 45 L30 30 L40 35 L50 20 L60 25 L70 15 L80 20 L90 5 L100 10"
+                                                fill="none" stroke="currentColor" stroke-width="0.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <img class="absolute inset-0 w-full h-full opacity-0"
+                            data-alt="Abstract interface mockup showing AI agent workflow and analytics dashboard"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCI2tW72m-tv4TyyeSoEvDV4wUI8i7SBuja9EFUHHJzq_0LSveGbSu60-j0eugEJMlemq8xHGWuCIxgBWcPJxEYK2C-JAawjnlGMX4X6C6V-fe41eB3b7gc-9t_MMHHot8MlsVtpK5XLUVuFGSMpLMXpAJCGrJ4Z8RhpWuXFhECvysrBzauQILv51Oqv5ZZDJKte1OdRo96u-3g2u2_KkKE5HuLe7vIpF-CQc7Onr1ipk0nRUsopX2qh21scGeh9FON4Fo--Bfb17w" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Social Proof / Logos -->
+        <section class="border-y border-gray-100 bg-white/50 backdrop-blur-sm py-12">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-sm font-semibold text-text-muted mb-8">受到前瞻性企業的信賴</p>
+                <div
+                    class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-60 grayscale transition-all hover:grayscale-0 hover:opacity-100 duration-500">
+                    <!-- Placeholder Logos using Text for simplicity, styling to look like logos -->
+                    <div class="flex items-center gap-2 font-bold text-xl text-gray-800"><span
+                            class="material-symbols-outlined">diamond</span> Acme Corp</div>
+                    <div class="flex items-center gap-2 font-bold text-xl text-gray-800"><span
+                            class="material-symbols-outlined">change_history</span> Vertex</div>
+                    <div class="flex items-center gap-2 font-bold text-xl text-gray-800"><span
+                            class="material-symbols-outlined">api</span> Flowbase</div>
+                    <div class="flex items-center gap-2 font-bold text-xl text-gray-800"><span
+                            class="material-symbols-outlined">bolt</span> EnergySim</div>
+                    <div class="flex items-center gap-2 font-bold text-xl text-gray-800"><span
+                            class="material-symbols-outlined">layers</span> Stacked</div>
+                </div>
+            </div>
+        </section>
+        <!-- Bento Grid Services -->
+        <section class="py-24 relative overflow-hidden">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="mb-16 md:text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold tracking-tight text-text-main sm:text-4xl mb-4">部署 AI 代理所需的一切</h2>
+                    <p class="text-lg text-text-muted">模組化、安全且可擴展的組件，旨在無縫地合於您現有的企業架構。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
+                    <!-- Card 1: AI Automation (Main Feature) -->
+                    <div
+                        class="md:col-span-2 group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="relative z-10 h-full flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                                    <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-text-main mb-2">AI 工作流程自動化</h3>
+                                <p class="text-text-muted max-w-md">建立由自主代理精確執行的複雜多步驟工作流程。從數據輸入到決策制定，自動化日常繁瑣任務。</p>
+                            </div>
+                            <!-- Visual element for card -->
+                            <div class="mt-8 flex gap-3 overflow-hidden">
+                                <div
+                                    class="flex-1 h-32 bg-gray-50 rounded-lg border border-gray-100 p-3 shadow-sm transform translate-y-4 group-hover:translate-y-2 transition-transform duration-500">
+                                    <div class="h-2 w-16 bg-primary/20 rounded mb-2"></div>
+                                    <div class="h-2 w-full bg-gray-200 rounded mb-1"></div>
+                                    <div class="h-2 w-2/3 bg-gray-200 rounded"></div>
+                                </div>
+                                <div
+                                    class="flex-1 h-32 bg-white rounded-lg border border-gray-200 p-3 shadow-md transform group-hover:scale-105 transition-transform duration-500 z-10">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div
+                                            class="h-2 w-12 bg-green-100 text-green-600 text-[10px] flex items-center px-1 rounded">
+                                            執行中</div>
+                                        <span class="material-symbols-outlined text-xs text-gray-400">more_horiz</span>
+                                    </div>
+                                    <div class="h-2 w-full bg-gray-100 rounded mb-2"></div>
+                                    <div class="h-2 w-full bg-gray-100 rounded mb-2"></div>
+                                    <div class="h-2 w-1/2 bg-gray-100 rounded"></div>
+                                </div>
+                                <div
+                                    class="flex-1 h-32 bg-gray-50 rounded-lg border border-gray-100 p-3 shadow-sm transform translate-y-4 group-hover:translate-y-2 transition-transform duration-500">
+                                    <div class="h-2 w-16 bg-gray-200 rounded mb-2"></div>
+                                    <div class="h-2 w-full bg-gray-200 rounded mb-1"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2: System Integration -->
+                    <div
+                        class="md:col-span-1 group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="relative z-10 flex flex-col h-full">
+                            <div
+                                class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/30 text-primary-dark">
+                                <span class="material-symbols-outlined text-2xl">hub</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-text-main mb-2">系統整合</h3>
+                            <p class="text-text-muted text-sm flex-grow">透過我們統一的 API 網格，連接 500+ 企業應用程式，包括 Salesforce、SAP
+                                和 Slack。</p>
+                            <div class="mt-6 flex flex-wrap gap-2">
+                                <span
+                                    class="px-2 py-1 bg-gray-50 border border-gray-200 rounded text-xs text-gray-600">REST
+                                    API</span>
+                                <span
+                                    class="px-2 py-1 bg-gray-50 border border-gray-200 rounded text-xs text-gray-600">GraphQL</span>
+                                <span
+                                    class="px-2 py-1 bg-gray-50 border border-gray-200 rounded text-xs text-gray-600">Webhooks</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3: Data 隱私政策 & Security (Full Width or Third) -->
+                    <div
+                        class="md:col-span-1 group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                        <div
+                            class="absolute -right-4 -bottom-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all">
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                                <span class="material-symbols-outlined text-2xl">shield_lock</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-text-main mb-2">企業級安全</h3>
+                            <p class="text-text-muted text-sm">您的數據永遠不會離開您的 VPC。我們提供地端部署選項，確保最大限度的合規性。</p>
+                            <div class="mt-6">
+                                <div class="flex items-center gap-2 text-sm text-text-main font-medium mb-2">
+                                    <span class="material-symbols-outlined text-green-500 text-base">lock</span>
+                                    端到端加密
+                                </div>
+                                <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                    <div class="bg-green-500 h-1.5 rounded-full w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Card 4: Analytics -->
+                    <div
+                        class="md:col-span-2 group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
+                        <div class="absolute inset-0 bg-mesh-gradient opacity-20"></div>
+                        <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center h-full">
+                            <div class="flex-1">
+                                <div
+                                    class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                                    <span class="material-symbols-outlined text-2xl">monitoring</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-text-main mb-2">即時分析</h3>
+                                <p class="text-text-muted">使用我們的綜合儀表板即時監控代理性能、成本使用和成功率。</p>
+                            </div>
+                            <div class="flex-1 w-full">
+                                <div
+                                    class="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-4 w-full shadow-sm">
+                                    <div class="flex items-end gap-2 h-24 items-end justify-between px-2">
+                                        <div
+                                            class="w-full bg-primary/20 rounded-t h-[40%] group-hover:h-[50%] transition-all duration-700">
+                                        </div>
+                                        <div
+                                            class="w-full bg-primary/30 rounded-t h-[70%] group-hover:h-[60%] transition-all duration-700">
+                                        </div>
+                                        <div
+                                            class="w-full bg-primary/40 rounded-t h-[50%] group-hover:h-[80%] transition-all duration-700">
+                                        </div>
+                                        <div
+                                            class="w-full bg-primary/60 rounded-t h-[80%] group-hover:h-[90%] transition-all duration-700">
+                                        </div>
+                                        <div
+                                            class="w-full bg-primary rounded-t h-[60%] group-hover:h-[100%] transition-all duration-700">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        </section>
+        <section class="py-24 bg-background-soft border-t border-gray-100">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                    <div class="max-w-3xl">
+                        <span class="text-primary font-bold tracking-wider text-sm uppercase mb-2 block">客戶案例</span>
+                        <h2 class="text-3xl font-bold tracking-tight text-text-main sm:text-4xl mb-4">受到<span
+                                class="gradient-text">前瞻思想家</span>的信賴</h2>
+                        <p class="text-lg text-text-muted">了解企業如何運用 Goyo 代理來擴展營運規模。</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button
+                            class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:border-primary hover:text-primary transition-colors bg-white">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                        </button>
+                        <button
+                            class="w-12 h-12 rounded-full bg-text-main text-white flex items-center justify-center hover:bg-primary transition-colors shadow-lg shadow-primary/20">
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div
+                        class="col-span-1 md:col-span-2 group relative overflow-hidden rounded-xl bg-white p-8 shadow-sm border border-gray-100 transition-all hover:shadow-md hover:border-primary/30">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div
+                            class="absolute top-8 right-8 text-secondary/30 group-hover:text-secondary/50 transition-colors pointer-events-none">
+                            <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+                            </svg>
+                        </div>
+                        <div class="relative z-10 flex flex-col h-full justify-between gap-8">
+                            <p class="text-lg font-medium text-text-main leading-relaxed">
+                                "能夠上傳我們完整的技術文件，讓代理在幾秒鐘內準備好回答查詢，這真是令人驚嘆。它將我們新工程師的入職時間縮短了 40%。"
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center text-blue-600 font-bold text-lg">
+                                    JD
+                                </div>
+                                <div>
+                                    <div class="font-bold text-text-main">James Delaney</div>
+                                    <div class="text-sm text-gray-500">工程副總裁, TechFlow</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-primary text-white rounded-xl p-8 shadow-lg relative overflow-hidden flex flex-col justify-between gap-6 group">
+                        <div
+                            class="absolute -right-4 -top-4 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-all">
+                        </div>
+                        <div class="relative z-10">
+                            <div class="flex text-yellow-300 mb-4">
+                                <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            </div>
+                            <p class="text-lg font-medium leading-relaxed opacity-90">
+                                "Goyo 的安全協議讓我們有信心在法務部門部署 AI。準確度無與倫比。"
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 relative z-10">
+                            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold">
+                                AR
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm">Amanda Ross</div>
+                                <div class="text-xs opacity-70">法務營運, FinCorp</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="group relative overflow-hidden rounded-xl bg-white p-8 shadow-sm border border-gray-100 flex flex-col justify-between gap-6 transition-all hover:shadow-md hover:border-primary/30">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="relative z-10">
+                            <p class="text-text-muted leading-relaxed">
+                                "我們完全自動化了一級客戶支援。需要時轉交給人工客服的過程非常流暢。"
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center text-purple-600 font-bold">
+                                    MK
+                                </div>
+                                <div>
+                                    <div class="font-bold text-text-main text-sm">Michael Kim</div>
+                                    <div class="text-sm text-text-muted">客戶體驗主管, Retailio</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="col-span-1 md:col-span-2 group relative overflow-hidden rounded-xl bg-gradient-to-r from-secondary/20 to-transparent p-8 border border-secondary/20 flex flex-col md:flex-row items-center gap-8 transition-all hover:border-secondary/40">
+                        <div class="flex-1">
+                            <p class="text-lg font-medium text-text-main italic">
+                                "實作花費不到一週時間。預建的 Slack 和 Notion 連接器為我們節省了數個月的開發時間。"
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center gap-4 min-w-max border-t md:border-t-0 md:border-l border-secondary/30 pt-4 md:pt-0 md:pl-6">
+                            <div
+                                class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary font-bold shadow-sm">
+                                SL
+                            </div>
+                            <div>
+                                <div class="font-bold text-text-main">Sarah Lee</div>
+                                <div class="text-sm text-text-muted">技術長, StartUp Inc</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="py-20 relative">
+            <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+                <div
+                    class="relative overflow-hidden rounded-3xl bg-background-dark px-6 py-16 text-center shadow-2xl sm:px-16">
+                    <div class="absolute inset-0 z-0">
+                        <div
+                            class="absolute top-0 right-0 -mr-20 -mt-20 h-[300px] w-[300px] rounded-full bg-primary/30 blur-3xl">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 -ml-20 -mb-20 h-[300px] w-[300px] rounded-full bg-primary/20 blur-3xl">
+                        </div>
+                    </div>
+                    <div class="relative z-10">
+                        <h2 class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                            準備好變革您的工作流程了嗎？
+                        </h2>
+                        <p class="mx-auto mt-4 max-w-xl text-lg text-gray-300">
+                            加入超過 500+ 家企業，使用 Goyo Tech 的自主 AI 代理擴展經營運作。
+                        </p>
+                        <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+                            <button data-demo-button
+                                class="flex h-12 min-w-[160px] items-center justify-center rounded-xl bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary-dark transition-all active:scale-95">
+                                預約演示
+                            </button>
+                            <button
+                                class="flex h-12 min-w-[160px] items-center justify-center rounded-xl border border-gray-600 bg-transparent px-8 text-base font-bold text-white hover:bg-white/10 transition-all active:scale-95">
+                                聯繫銷售
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="border-t border-gray-100 bg-white pt-16 pb-8">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
+                    <div class="col-span-2 lg:col-span-2">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="flex h-6 w-6 items-center justify-center rounded bg-primary text-white">
+                                <span class="material-symbols-outlined text-sm">smart_toy</span>
+                            </div>
+                            <span class="text-lg font-bold text-text-main">Goyo Tech</span>
+                        </div>
+                        <p class="mb-6 max-w-xs text-sm text-text-muted">
+                            為下一代自主企業打造基礎設施。
+                        </p>
+                        <div class="flex gap-4">
+                            <a class="text-gray-400 hover:text-primary transition-colors" href="#">
+                                <span class="sr-only">Twitter</span>
+                                <svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+                                    <path
+                                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a class="text-gray-400 hover:text-primary transition-colors" href="#">
+                                <span class="sr-only">GitHub</span>
+                                <svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+                                    <path clip-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                        fill-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="mb-4 text-sm font-semibold text-text-main">產品</h3>
+                        <ul class="space-y-3 text-sm text-text-muted">
+                            <li><a class="hover:text-primary transition-colors" href="product_landing.html">代理</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="product_landing.html">工作流程</a>
+                            </li>
+                            <li><a class="hover:text-primary transition-colors" href="product_landing.html">整合</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="index.html">價格方案</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="mb-4 text-sm font-semibold text-text-main">公司</h3>
+                        <ul class="space-y-3 text-sm text-text-muted">
+                            <li><a class="hover:text-primary transition-colors" href="abbot_us.html">關於我們</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="blog-proxy.html">部落格</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">就業機會</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">聯繫我們</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="mb-4 text-sm font-semibold text-text-main">法律資訊</h3>
+                        <ul class="space-y-3 text-sm text-text-muted">
+                            <li><a class="hover:text-primary transition-colors" href="#">隱私政策</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">使用條款</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">安全性</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="mt-12 border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-xs text-gray-400">© 2024 Goyo Tech Inc. 保留所有權利。</p>
+                    <div class="flex gap-6">
+                        <span class="text-xs text-gray-400 flex items-center gap-1"><span
+                                class="w-2 h-2 rounded-full bg-green-500"></span> 系統運作正常</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- Demo Modal Integration -->
+    <script src="shared/config.js"></script>
+    <script src="shared/demo-modal.js"></script>
+    <script>
+        // Initialize Demo Modal
+        document.addEventListener('DOMContentLoaded', function () {
+            // 使用配置檔案中的設定
+            if (typeof window.APP_CONFIG !== 'undefined' && window.APP_CONFIG.googleForms) {
+                window.demoModal = DemoModal.create(window.APP_CONFIG.googleForms);
+            } else {
+                console.error('配置檔案未載入或缺少 Google Forms 設定！請檢查 shared/config.js');
+                // 備用設定（不應該執行到這裡）
+                window.demoModal = DemoModal.create({
+                    googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfUap9xZ1h6bC9G8ks58hjg-nKxx2q2XOp7WEn8Rg_zjD2_Dg/formResponse',
+                    fieldMapping: {
+                        name: 'entry.473614741',
+                        email: 'entry.1795138407',
+                        company: 'entry.1511061340',
+                        usecase: 'entry.1651568110'
+                    },
+                    recipientEmail: 'cy.hsu@goyo-tech.com'
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

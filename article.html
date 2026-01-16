@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title id="article-title">文章標題 - Goyo Tech</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Chinese Fonts - Chiron Hei HK -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chiron+Hei+HK:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet" />
+    <!-- Material Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="shared/styles.css" />
+    <!-- Notion API Proxy -->
+    <script src="shared/notion-api-proxy.js"></script>
+    <!-- Theme Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#9980ff",
+                        "primary-dark": "#7a66cc",
+                        "accent": "#ffcdf2",
+                        "background-light": "#ffffff",
+                        "background-dark": "#130f23",
+                        "text-main": "#100c1d",
+                        "text-muted": "#6b7280",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "chinese": ["Chiron Hei HK", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .prose {
+            max-width: none;
+        }
+
+        .prose h1 {
+            @apply text-3xl font-bold text-text-main mb-6 mt-8 font-chinese;
+        }
+
+        .prose h2 {
+            @apply text-2xl font-bold text-text-main mb-4 mt-8 font-chinese;
+        }
+
+        .prose h3 {
+            @apply text-xl font-semibold text-text-main mb-3 mt-6 font-chinese;
+        }
+
+        .prose p {
+            @apply text-lg text-text-muted leading-relaxed mb-4 font-chinese;
+        }
+
+        .prose ul {
+            @apply list-disc pl-6 mb-4 space-y-2;
+        }
+
+        .prose ol {
+            @apply list-decimal pl-6 mb-4 space-y-2;
+        }
+
+        .prose li {
+            @apply text-lg text-text-muted font-chinese;
+        }
+
+        .prose blockquote {
+            @apply border-l-4 border-primary/30 pl-6 py-2 italic text-text-muted bg-primary/5 rounded-r-lg;
+        }
+
+        .prose code {
+            @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+        }
+
+        .prose pre {
+            @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4;
+        }
+
+        .prose img {
+            @apply rounded-lg shadow-md mb-4;
+        }
+
+        .prose a {
+            @apply text-primary hover:text-primary-dark underline;
+        }
+    </style>
+</head>
+
+<body
+    class="font-display bg-background-light text-text-main antialiased overflow-x-hidden selection:bg-primary/30 selection:text-primary-dark">
+
+    <!-- Include shared header -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('shared/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('afterbegin', data);
+                    // Set active page after header is loaded
+                    if (typeof setActiveNav === 'function') {
+                        setActiveNav('blog');
+                    }
+                })
+                .catch(error => console.error('Error loading header:', error));
+        });
+    </script>
+
+    <main class="pt-20">
+        <!-- Article Hero -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-6">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a href="blog-proxy.html"
+                        class="inline-flex items-center gap-2 text-primary hover:text-primary-dark transition-colors">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                        <span class="font-medium">回到部落格</span>
+                    </a>
+                </div>
+
+                <!-- Article Meta -->
+                <div class="mb-6 flex items-center gap-4 text-sm text-text-muted">
+                    <span id="article-date">載入中...</span>
+                    <span class="text-primary">•</span>
+                    <span id="article-category">載入中...</span>
+                    <span class="text-primary">•</span>
+                    <span id="article-readtime">5 分鐘閱讀</span>
+                </div>
+
+                <!-- Article Title -->
+                <h1 id="article-heading"
+                    class="text-4xl md:text-5xl font-bold text-text-main mb-6 leading-tight font-chinese">
+                    載入文章中...
+                </h1>
+
+                <!-- Article Featured Image -->
+                <div id="article-image-container" class="mb-8">
+                    <img id="article-image" class="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg" alt="文章封面圖片">
+                </div>
+            </div>
+        </section>
+
+        <!-- Article Content -->
+        <section class="py-16">
+            <div class="max-w-4xl mx-auto px-6">
+                <article id="article-content" class="prose prose-lg max-w-none">
+                    <!-- 文章內容將在這裡動態載入 -->
+                    <div class="flex justify-center py-8">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                    </div>
+                </article>
+
+                <!-- Share Buttons -->
+                <div class="mt-12 pt-8 border-t border-gray-200">
+                    <h3 class="text-lg font-semibold text-text-main mb-4 font-chinese">分享此文章</h3>
+                    <div class="flex gap-4">
+                        <button onclick="shareArticle('twitter')"
+                            class="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                            <span class="material-symbols-outlined text-sm">share</span>
+                            Twitter
+                        </button>
+                        <button onclick="shareArticle('facebook')"
+                            class="flex items-center gap-2 bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors">
+                            <span class="material-symbols-outlined text-sm">share</span>
+                            Facebook
+                        </button>
+                        <button onclick="copyArticleLink()"
+                            class="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                            <span class="material-symbols-outlined text-sm">link</span>
+                            複製連結
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Articles -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 class="text-3xl font-bold text-text-main mb-12 text-center font-chinese">相關文章</h2>
+                <div id="related-articles" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 相關文章將在這裡動態載入 -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-100 bg-white pt-16 pb-8">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <div class="flex h-6 w-6 items-center justify-center rounded bg-primary text-white">
+                        <span class="material-symbols-outlined text-sm">smart_toy</span>
+                    </div>
+                    <span class="text-lg font-bold text-text-main">Goyo Tech</span>
+                </div>
+                <p class="text-sm text-text-muted">© 2024 Goyo Tech Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let blogAPI;
+
+        // 文章載入和顯示功能
+        async function loadArticle() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+
+            if (!articleId) {
+                showError('文章ID不存在');
+                return;
+            }
+
+            try {
+                // 初始化Notion API Proxy
+                blogAPI = new NotionBlogAPIProxy();
+
+                // 載入文章內容
+                const post = await blogAPI.getPost(articleId);
+                renderArticle(post);
+
+            } catch (error) {
+                console.error('載入文章失敗:', error);
+                showError('載入文章失敗，請稍後再試');
+            }
+        }
+
+        function showError(message) {
+            document.getElementById('article-content').innerHTML = `<p class="text-red-500 text-center py-8">${message}</p>`;
+            document.getElementById('article-heading').textContent = '載入失敗';
+        }
+
+        function renderArticle(post) {
+            // 更新頁面標題
+            document.getElementById('article-title').textContent = post.title + ' - Goyo Tech';
+            document.getElementById('article-heading').textContent = post.title;
+
+            // 更新文章資訊
+            document.getElementById('article-date').textContent = formatDate(post.publishedDate);
+            document.getElementById('article-category').textContent = post.category;
+            document.getElementById('article-readtime').textContent = `${post.readTime} 分鐘閱讀`;
+
+            // 更新封面圖片
+            if (post.featuredImage) {
+                document.getElementById('article-image').src = post.featuredImage;
+                document.getElementById('article-image').alt = post.title;
+            } else {
+                document.getElementById('article-image-container').style.display = 'none';
+            }
+
+            // 渲染文章內容
+            document.getElementById('article-content').innerHTML = post.content || '<p>內容載入中...</p>';
+
+            // 載入相關文章
+            loadRelatedArticles(post.category, post.id);
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return '未知日期';
+
+            try {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('zh-TW', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            } catch (error) {
+                return dateString;
+            }
+        }
+
+        function parseMarkdown(markdown) {
+            // 簡單的Markdown解析（可用marked.js等庫）
+            // 這裡示範基本解析
+            const lines = markdown.split('\n');
+            const meta = {};
+            let content = '';
+            let inMeta = false;
+
+            // 解析front matter
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                if (line === '---') {
+                    inMeta = !inMeta;
+                    continue;
+                }
+                if (inMeta) {
+                    const [key, value] = line.split(': ');
+                    meta[key] = value?.replace(/"/g, '');
+                } else {
+                    content += line + '\n';
+                }
+            }
+
+            // 基本Markdown轉HTML
+            content = content
+                .replace(/^# (.+$)/gm, '<h1>$1</h1>')
+                .replace(/^## (.+$)/gm, '<h2>$1</h2>')
+                .replace(/^### (.+$)/gm, '<h3>$1</h3>')
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.+?)\*/g, '<em>$1</em>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/^(?!<[h|p])/gm, '<p>')
+                .replace(/(?![h|p]>)$/gm, '</p>');
+
+            return {
+                title: meta.title || '無標題',
+                date: meta.date || '未知日期',
+                category: meta.category || '未分類',
+                image: meta.image,
+                content: content
+            };
+        }
+
+        // 分享功能
+        function shareArticle(platform) {
+            const url = window.location.href;
+            const title = document.getElementById('article-heading').textContent;
+
+            switch (platform) {
+                case 'twitter':
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`);
+                    break;
+                case 'facebook':
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
+                    break;
+            }
+        }
+
+        function copyArticleLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('連結已複製到剪貼簿');
+            });
+        }
+
+        // 載入相關文章
+        async function loadRelatedArticles(category, currentPostId) {
+            try {
+                const allPosts = await blogAPI.getPosts();
+                const relatedPosts = allPosts
+                    .filter(post => post.id !== currentPostId && post.category === category)
+                    .slice(0, 3);
+
+                const relatedContainer = document.getElementById('related-articles');
+                if (!relatedPosts.length) {
+                    relatedContainer.innerHTML = `
+                <div class="col-span-full text-center py-8">
+                    <p class="text-text-muted">暫無相關文章</p>
+                </div>
+            `;
+                    return;
+                }
+
+                const relatedHTML = relatedPosts.map(post => `
+            <article class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-all">
+                <a href="${post.url}" class="block">
+                    <img src="${post.featuredImage || getDefaultImage(post.category)}"
+                         alt="${post.title}"
+                         class="w-full h-48 object-cover rounded-xl mb-4"
+                         onerror="this.src='${getDefaultImage(post.category)}'">
+                    <div class="text-sm text-text-muted mb-2">${formatDate(post.publishedDate)}</div>
+                    <h3 class="text-lg font-semibold text-text-main mb-2 hover:text-primary transition-colors">
+                        ${post.title}
+                    </h3>
+                    <p class="text-text-muted text-sm">${post.excerpt || '點擊閱讀全文...'}</p>
+                </a>
+            </article>
+        `).join('');
+
+                relatedContainer.innerHTML = relatedHTML;
+
+            } catch (error) {
+                console.error('載入相關文章失敗:', error);
+            }
+        }
+
+        function getDefaultImage(category) {
+            const images = {
+                'AI News': 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop',
+                'Tech Documents': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop',
+                'Company News': 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop',
+                'Culture': 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop',
+                'default': 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop'
+            };
+
+            return images[category] || images.default;
+        }
+
+        // 頁面載入時執行
+        document.addEventListener('DOMContentLoaded', function () {
+            loadArticle();
+            loadRelatedArticles();
+        });
+    </script>
+
+</body>
+
+</html>

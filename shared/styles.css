@@ -1,0 +1,191 @@
+/* Goyo Tech - 統一樣式配置 */
+
+/* Tailwind CSS 配置腳本 */
+<script>
+window.tailwindConfig = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#9980ff",
+                "primary-dark": "#7a66cc",
+                "secondary": "#6366f1",
+                "accent": "#ffcdf2",
+                "accent-light": "#fff0f9",
+                "background-light": "#ffffff",
+                "background-dark": "#130f23",
+                "background-soft": "#fafafa",
+                "background-alt": "#f8f9fa",
+                "text-main": "#100c1d",
+                "text-muted": "#6b7280",
+                "text-subtle": "#6b7280"
+            },
+            fontFamily: {
+                "display": ["Chiron Hei HK", "Inter", "sans-serif"],
+                "body": ["Chiron Hei HK", "Inter", "sans-serif"],
+                "sans": ["Chiron Hei HK", "Inter", "system-ui", "sans-serif"],
+                "chinese": ["Chiron Hei HK", "sans-serif"],
+                "tc": ["Chiron Hei HK", "sans-serif"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.375rem",
+                "lg": "0.75rem",
+                "xl": "1rem",
+                "2xl": "1.5rem",
+                "3xl": "1.5rem",
+                "full": "9999px"
+            },
+            backgroundImage: {
+                'mesh-gradient': 'radial-gradient(at 27% 37%, #ffcdf2 0px, transparent 50%), radial-gradient(at 97% 21%, #e0e7ff 0px, transparent 50%), radial-gradient(at 52% 99%, #f3e8ff 0px, transparent 50%)'
+            },
+            boxShadow: {
+                "soft": "0 20px 40px -10px rgba(151, 126, 255, 0.15)",
+                "glass": "0 8px 32px 0 rgba(31, 38, 135, 0.05)"
+            }
+        }
+    }
+};
+
+// 動態注入 Tailwind 配置
+if (window.tailwind) {
+    tailwind.config = window.tailwindConfig;
+}
+</script>
+
+/* 共用CSS樣式 */
+.gradient-text {
+    background: linear-gradient(135deg, #9980ff 0%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #977eff 0%, #7b61ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.shadow-soft {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.bg-soft-gradient {
+    background: radial-gradient(circle at top right, #fff0fa 0%, rgba(255,255,255,0) 50%),
+                radial-gradient(circle at bottom left, #f3f0ff 0%, rgba(255,255,255,0) 50%);
+}
+
+/* 動畫樣式 */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 響應式輔助樣式 */
+.container-custom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .container-custom { padding: 0 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+    .container-custom { padding: 0 2rem; }
+}
+
+/* 通用元件樣式 */
+.btn-primary {
+    @apply flex items-center justify-center rounded-xl bg-primary px-8 py-3 text-base font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary-dark transition-all active:scale-95;
+}
+
+.btn-secondary {
+    @apply flex items-center justify-center rounded-xl border border-gray-200 bg-white px-8 py-3 text-base font-bold text-text-main hover:bg-gray-50 hover:border-gray-300 transition-all active:scale-95;
+}
+
+.card-base {
+    @apply bg-white rounded-2xl border border-gray-100 p-8 shadow-sm hover:shadow-md transition-all;
+}
+
+/* 導航活動狀態 */
+.nav-active {
+    @apply text-primary border-b-2 border-primary;
+}
+
+.nav-link {
+    @apply text-sm font-medium text-text-main hover:text-primary transition-colors;
+}
+
+/* 全域字體設定 - 中英文混合 */
+* {
+    font-family: "Chiron Hei HK", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-optical-sizing: auto;
+}
+
+/* 覆蓋 body 預設字體 */
+body {
+    font-family: "Chiron Hei HK", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+/* 標題元素 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Chiron Hei HK", "Inter", system-ui, sans-serif !important;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-feature-settings: "kern" 1;
+    text-rendering: optimizeLegibility;
+}
+
+/* 文字元素 */
+p, span, a, button, div, li, td, th {
+    font-family: "Chiron Hei HK", "Inter", system-ui, sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+/* 輸入元素 */
+input, textarea, select {
+    font-family: "Chiron Hei HK", "Inter", system-ui, sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+/* 向後兼容的特定類別 */
+.font-chinese, .font-tc {
+    font-family: "Chiron Hei HK", "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.text-chinese {
+    font-family: "Chiron Hei HK", "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-feature-settings: "kern" 1;
+    text-rendering: optimizeLegibility;
+}
+
+.heading-chinese {
+    font-family: "Chiron Hei HK", "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.body-chinese {
+    font-family: "Chiron Hei HK", "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.6;
+}

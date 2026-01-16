@@ -1,0 +1,47 @@
+<!-- Demo Booking Modal -->
+<div id="demoModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full mx-4 p-8 shadow-2xl transform transition-all">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-2xl font-bold text-text-main">預約產品演示</h3>
+            <button id="closeModal" class="text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100 transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <p class="text-text-muted mb-6">
+            填寫您的資訊，我們將安排專人為您展示 Goyo Tech AI 代理的強大功能。
+        </p>
+
+        <form id="demoForm" class="flex flex-col gap-6">
+            <div>
+                <label class="block text-sm font-bold text-text-main mb-2" for="modal-name">姓名</label>
+                <input class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                       id="modal-name" placeholder="王小明" type="text" required/>
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-text-main mb-2" for="modal-email">公司信箱</label>
+                <input class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                       id="modal-email" placeholder="wang@company.com" type="email" required/>
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-text-main mb-2" for="modal-company">公司名稱</label>
+                <input class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                       id="modal-company" placeholder="您的公司名稱" type="text" required/>
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-text-main mb-2" for="modal-usecase">希望自動化的場景</label>
+                <textarea class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                          id="modal-usecase" placeholder="例如：客戶服務自動化、發票處理、銷售線索管理..." rows="3"></textarea>
+            </div>
+            <button class="mt-2 w-full bg-gradient-to-r from-primary to-primary-dark text-white font-bold py-4 rounded-full shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all flex items-center justify-center gap-2"
+                    type="submit">
+                預約演示
+                <span class="material-symbols-outlined">calendar_month</span>
+            </button>
+        </form>
+
+        <p class="text-xs text-gray-500 text-center mt-4">
+            我們將在 24 小時內聯繫您安排演示時間
+        </p>
+    </div>
+</div>

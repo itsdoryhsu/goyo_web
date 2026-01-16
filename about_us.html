@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>關於我們 - Goyo Tech</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Chinese Fonts - Chiron Hei HK -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chiron+Hei+HK:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet" />
+    <!-- Material Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="shared/styles.css" />
+    <!-- Theme Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#9980ff",
+                        "primary-dark": "#7a66cc",
+                        "accent": "#ffcdf2",
+                        "background-light": "#ffffff",
+                        "background-dark": "#130f23",
+                        "text-main": "#100c1d",
+                        "text-muted": "#6b7280",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'mesh-gradient': 'radial-gradient(at 27% 37%, #ffcdf2 0px, transparent 50%), radial-gradient(at 97% 21%, #e0e7ff 0px, transparent 50%), radial-gradient(at 52% 99%, #f3e8ff 0px, transparent 50%)',
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-main font-display antialiased overflow-x-hidden selection:bg-primary/30 selection:text-primary-dark">
+    <!-- Background Mesh Gradients -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-accent/30 blur-[100px]"></div>
+        <div class="absolute top-[10%] right-[-5%] w-[40%] h-[60%] rounded-full bg-primary/10 blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] left-[20%] w-[60%] h-[40%] rounded-full bg-accent/20 blur-[120px]"></div>
+    </div>
+    <div class="relative z-10 flex flex-col min-h-screen">
+        <!-- Include shared header -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('shared/header.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.querySelector('.relative.z-10').insertAdjacentHTML('afterbegin', data);
+                        // Set active page after header is loaded
+                        if (typeof setActiveNav === 'function') {
+                            setActiveNav('about');
+                        }
+                    })
+                    .catch(error => console.error('Error loading header:', error));
+            });
+        </script>
+
+        <!-- Hero Section -->
+        <section class="relative pt-16 pb-20 lg:pt-24 lg:pb-28">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-4xl mx-auto">
+                    <h1
+                        class="text-4xl font-extrabold tracking-tight text-text-main sm:text-5xl xl:text-6xl mb-6 heading-chinese">
+                        打造<span class="text-primary">自主企業</span>的未來
+                    </h1>
+                    <p class="text-xl text-text-muted leading-relaxed max-w-2xl mx-auto body-chinese">
+                        我們的使命是普及 AI 自動化，讓企業級自主代理能夠被各種規模的組織所使用。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission & Vision -->
+        <section class="py-20 border-t border-gray-100">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-text-main mb-6 heading-chinese">我們的使命</h2>
+                        <p class="text-lg text-text-muted mb-6 leading-relaxed">
+                            我們相信每個組織都應該能夠使用智慧自動化 它能夠適應、學習並與業務共同成長. 我們的 AI 代理 don't just execute tasksthey understand
+                            context, make decisions, and continuously improve.
+                        </p>
+                        <p class="text-lg text-text-muted leading-relaxed">
+                            Goyo Tech 成立於 2023 年，源於我們認識到傳統自動化工具對於現代企業需求太過固化。我們致力於創造不同的東西：真正的自主代理，能夠在現有基礎設施中無縫地運作。
+                        </p>
+                    </div>
+                    <div class="relative">
+                        <div class="bg-white rounded-2xl border border-gray-100 shadow-lg p-8">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-primary mb-2">500+</div>
+                                    <div class="text-sm text-text-muted">企業客戶</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-primary mb-2">99.9%</div>
+                                    <div class="text-sm text-text-muted">運作正常時間</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-primary mb-2">2M+</div>
+                                    <div class="text-sm text-text-muted">自動化任務</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-primary mb-2">24/7</div>
+                                    <div class="text-sm text-text-muted">全球支援</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-text-main mb-4">認識我們的團隊</h2>
+                    <p class="text-lg text-text-muted max-w-2xl mx-auto">
+                        世界級的工程師、研究人員和商業領袖，因共同的自主企業願景而團結在一起。
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Team Member 1 -->
+                    <div
+                        class="bg-white rounded-2xl border border-gray-100 p-6 text-center shadow-sm hover:shadow-md transition-all">
+                        <div class="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl text-primary">person</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text-main mb-1">Sarah Chen</h3>
+                        <p class="text-primary font-medium mb-3">執行長兼共同創辦人</p>
+                        <p class="text-sm text-text-muted">
+                            前 Google AI 研究主管。史丹佛大學機器學習博士。在企業 AI 領域擁有 15+ 年經驗。
+                        </p>
+                    </div>
+                    <!-- Team Member 2 -->
+                    <div
+                        class="bg-white rounded-2xl border border-gray-100 p-6 text-center shadow-sm hover:shadow-md transition-all">
+                        <div class="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl text-primary">person</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text-main mb-1">Marcus Rodriguez</h3>
+                        <p class="text-primary font-medium mb-3">技術長兼共同創辦人</p>
+                        <p class="text-sm text-text-muted">
+                            Ex-Principal Engineer at Microsoft Azure. Expert in distributed systems and cloud
+                            infrastructure.
+                        </p>
+                    </div>
+                    <!-- Team Member 3 -->
+                    <div
+                        class="bg-white rounded-2xl border border-gray-100 p-6 text-center shadow-sm hover:shadow-md transition-all">
+                        <div class="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl text-primary">person</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text-main mb-1">Dr. Alex Kumar</h3>
+                        <p class="text-primary font-medium mb-3">Head of AI Research</p>
+                        <p class="text-sm text-text-muted">
+                            AI researcher with 20+ publications. Former researcher at OpenAI and DeepMind.
+                        </p>
+                    </div>
+                    <!-- Team Member 4 -->
+                    <div
+                        class="bg-white rounded-2xl border border-gray-100 p-6 text-center shadow-sm hover:shadow-md transition-all">
+                        <div class="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl text-primary">person</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text-main mb-1">Emily Watson</h3>
+                        <p class="text-primary font-medium mb-3">VP of Product</p>
+                        <p class="text-sm text-text-muted">
+                            Product leader with 12+ years at enterprise software companies. Expert in B2B user
+                            experience.
+                        </p>
+                    </div>
+                    <!-- Team Member 5 -->
+                    <div
+                        class="bg-white rounded-2xl border border-gray-100 p-6 text-center shadow-sm hover:shadow-md transition-all">
+                        <div class="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl text-primary">person</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text-main mb-1">David Park</h3>
+                        <p class="text-primary font-medium mb-3">VP of Engineering</p>
+                        <p class="text-sm text-text-muted">
+                            Former Staff Engineer at Stripe. Specializes in scalable backend systems and API design.
+                        </p>
+                    </div>
+                    <!-- Team Member 6 -->
+                    <div
+                        class="bg-white rounded-2xl border border-gray-100 p-6 text-center shadow-sm hover:shadow-md transition-all">
+                        <div class="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl text-primary">person</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text-main mb-1">Lisa Thompson</h3>
+                        <p class="text-primary font-medium mb-3">Chief Security Officer</p>
+                        <p class="text-sm text-text-muted">
+                            20+ years in cybersecurity. Former CISO at Fortune 500 companies. Expert in enterprise
+                            compliance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="py-20">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-text-main mb-4">我們的價值觀</h2>
+                    <p class="text-lg text-text-muted">
+                        指導我們一切行動的原則。
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Value 1 -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl text-primary">security</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text-main mb-3">安全第一</h3>
+                        <p class="text-text-muted">
+                            Your data security isn't an afterthoughtit's built into every line of code, every
+                            architectural decision, and every process we design.
+                        </p>
+                    </div>
+                    <!-- Value 2 -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl text-primary">bolt</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text-main mb-3">持續創新</h3>
+                        <p class="text-text-muted">
+                            We constantly push the boundaries of what's possible with AI, staying ahead of the curve to
+                            deliver cutting-edge solutions.
+                        </p>
+                    </div>
+                    <!-- Value 3 -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl text-primary">handshake</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text-main mb-3">客戶成功</h3>
+                        <p class="text-text-muted">
+                            Your success is our success. We're not just a vendorwe're your partner in transformation,
+                            committed to your long-term growth.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 relative">
+            <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+                <div
+                    class="relative overflow-hidden rounded-3xl bg-background-dark px-6 py-16 text-center shadow-2xl sm:px-16">
+                    <div class="absolute inset-0 z-0">
+                        <div
+                            class="absolute top-0 right-0 -mr-20 -mt-20 h-[300px] w-[300px] rounded-full bg-primary/30 blur-3xl">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 -ml-20 -mb-20 h-[300px] w-[300px] rounded-full bg-primary/20 blur-3xl">
+                        </div>
+                    </div>
+                    <div class="relative z-10">
+                        <h2 class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                            準備加入我們的使命嗎？
+                        </h2>
+                        <p class="mx-auto mt-4 max-w-xl text-lg text-gray-300">
+                            我們始終在尋找優秀人才，幫助我們打造企業自動化的未來。
+                        </p>
+                        <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+                            <button
+                                class="flex h-12 min-w-[160px] items-center justify-center rounded-xl bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary-dark transition-all active:scale-95">
+                                查看職缺
+                            </button>
+                            <button
+                                class="flex h-12 min-w-[160px] items-center justify-center rounded-xl border border-gray-600 bg-transparent px-8 text-base font-bold text-white hover:bg-white/10 transition-all active:scale-95">
+                                聯繫我們
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="border-t border-gray-100 bg-white pt-16 pb-8">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
+                    <div class="col-span-2 lg:col-span-2">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="flex h-6 w-6 items-center justify-center rounded bg-primary text-white">
+                                <span class="material-symbols-outlined text-sm">smart_toy</span>
+                            </div>
+                            <span class="text-lg font-bold text-text-main">Goyo Tech</span>
+                        </div>
+                        <p class="mb-6 max-w-xs text-sm text-text-muted">
+                            Building the infrastructure for the next generation of autonomous enterprise.
+                        </p>
+                        <div class="flex gap-4">
+                            <a class="text-gray-400 hover:text-primary transition-colors" href="#">
+                                <span class="sr-only">Twitter</span>
+                                <svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+                                    <path
+                                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a class="text-gray-400 hover:text-primary transition-colors" href="#">
+                                <span class="sr-only">GitHub</span>
+                                <svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+                                    <path clip-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                        fill-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="mb-4 text-sm font-semibold text-text-main">Product</h3>
+                        <ul class="space-y-3 text-sm text-text-muted">
+                            <li><a class="hover:text-primary transition-colors" href="product_landing.html">Agents</a>
+                            </li>
+                            <li><a class="hover:text-primary transition-colors"
+                                    href="product_landing.html">Workflows</a></li>
+                            <li><a class="hover:text-primary transition-colors"
+                                    href="product_landing.html">Integrations</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="index.html">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="mb-4 text-sm font-semibold text-text-main">Company</h3>
+                        <ul class="space-y-3 text-sm text-text-muted">
+                            <li><a class="hover:text-primary transition-colors" href="abbot_us.html">About</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="blog-proxy.html">Blog</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="mb-4 text-sm font-semibold text-text-main">Legal</h3>
+                        <ul class="space-y-3 text-sm text-text-muted">
+                            <li><a class="hover:text-primary transition-colors" href="#">Privacy</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Terms</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="mt-12 border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-xs text-gray-400">� 2024 Goyo Tech Inc. All rights reserved.</p>
+                    <div class="flex gap-6">
+                        <span class="text-xs text-gray-400 flex items-center gap-1"><span
+                                class="w-2 h-2 rounded-full bg-green-500"></span> System Operational</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
