@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-TW">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Goyo Tech - Blog</title>
+    
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Chiron+Hei+HK:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="shared/styles.css"/>
+    
+    <script src="shared/blog-data.js"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#9980ff",
+                        "primary-dark": "#7a66cc",
+                        "secondary": "#6366f1",
+                        "accent": "#ffcdf2",
+                        "background-light": "#ffffff",
+                        "background-dark": "#130f23",
+                        "background-soft": "#fafafa",
+                        "text-main": "#100c1d",
+                        "text-muted": "#6b7280",
+                    },
+                    fontFamily: {
+                        "display": ["Chiron Hei HK", "Inter", "sans-serif"],
+                        "body": ["Chiron Hei HK", "Inter", "sans-serif"],
+                        "sans": ["Chiron Hei HK", "Inter", "system-ui", "sans-serif"],
+                        "chinese": ["Chiron Hei HK", "sans-serif"],
+                        "tc": ["Chiron Hei HK", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "3xl": "1.5rem","full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 20px 40px -10px rgba(151, 126, 255, 0.15)",
+                        "glass": "0 8px 32px 0 rgba(31, 38, 135, 0.05)",
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .text-gradient {
+            background: linear-gradient(135deg, #977eff 0%, #7b61ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-soft-gradient {
+            background: radial-gradient(circle at top right, #fff0fa 0%, rgba(255,255,255,0) 50%),
+                        radial-gradient(circle at bottom left, #f3f0ff 0%, rgba(255,255,255,0) 50%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main font-display antialiased overflow-x-hidden selection:bg-primary/30 selection:text-primary-dark">
+
+<div id="header-placeholder"></div>
+
+<main class="bg-background-light">
+    <section class="relative overflow-hidden pt-32 pb-12 lg:pt-48 lg:pb-16 bg-soft-gradient">
+        <div class="absolute top-20 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-accent/20 blur-3xl opacity-60"></div>
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-black leading-tight tracking-tight text-text-main sm:text-5xl lg:text-6xl">
+                <span class="text-gradient">果友</span> 的一些小分享
+            </h1>
+            <p class="mt-6 text-lg text-text-muted max-w-2xl mx-auto">
+                不管是我們自己在專案面、營運面或是創業上的一些心路歷程，想要透過文字幫自己做個紀錄、同時也分享給大家 ：）
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16 sm:py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col gap-12">
+                
+                <div id="blog-posts" class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="col-span-full flex justify-center py-16">
+                        <div class="flex items-center gap-3 text-text-muted">
+                            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                            <span>載入文章中...</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<!-- Contact Sales Modal -->
+<div id="contact-sales-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 transform transition-all duration-300 scale-95 opacity-0" id="contact-modal-content">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-2xl font-bold text-gray-900">聯繫銷售團隊</h3>
+            <button id="close-contact-modal" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
+                <span class="material-symbols-outlined text-gray-600 text-sm">close</span>
+            </button>
+        </div>
+
+        <!-- Email Contacts -->
+        <div class="space-y-4 mb-6">
+            <div class="bg-primary/5 rounded-xl p-4 border border-primary/10">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-sm">person</span>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">業務聯繫</h4>
+                        <p class="text-sm text-gray-600">產品諮詢與方案規劃</p>
+                    </div>
+                </div>
+                <a href="mailto:yenting@goyo-tech.com" class="flex items-center gap-2 text-primary hover:text-primary-dark transition-colors font-medium">
+                    <span class="material-symbols-outlined text-sm">mail</span>
+                    yenting@goyo-tech.com
+                </a>
+            </div>
+
+            <div class="bg-secondary/5 rounded-xl p-4 border border-secondary/10">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-secondary text-sm">engineering</span>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900">技術支援</h4>
+                        <p class="text-sm text-gray-600">技術諮詢與系統整合</p>
+                    </div>
+                </div>
+                <a href="mailto:cy.hsu@goyo-tech.com" class="flex items-center gap-2 text-secondary hover:text-secondary/80 transition-colors font-medium">
+                    <span class="material-symbols-outlined text-sm">mail</span>
+                    cy.hsu@goyo-tech.com
+                </a>
+            </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="bg-gray-50 rounded-lg p-4 text-center">
+            <p class="text-sm text-gray-600 mb-2">
+                <span class="material-symbols-outlined text-primary text-sm mr-1 inline-block">schedule</span>
+                我們將在24小時內回覆您
+            </p>
+            <p class="text-xs text-gray-500">
+                或直接點擊郵箱地址開啟您的郵件應用程式
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 載入 Header & Footer
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('shared/header.html').then(r => r.text()).then(d => document.getElementById('header-placeholder').innerHTML = d);
+        fetch('shared/footer.html').then(r => r.text()).then(d => {
+            document.getElementById('footer-placeholder').innerHTML = d;
+            // 在footer加載後綁定聯繫我們按鈕事件
+            setupContactModal();
+        });
+
+        // 開始載入文章
+        loadBlogData();
+    });
+
+    // 載入與渲染邏輯 (簡化版，直接讀取 blog-data.js)
+    function loadBlogData() {
+        // blogPosts 變數來自 blog-data.js
+        if (typeof blogPosts !== 'undefined') {
+            renderPosts(blogPosts);
+        } else {
+            showError('無法載入文章資料庫');
+        }
+    }
+
+    function renderPosts(posts) {
+        const container = document.getElementById('blog-posts');
+
+        if (!posts || posts.length === 0) {
+            container.innerHTML = `
+                <div class="col-span-full text-center py-16">
+                    <div class="text-6xl mb-4">📝</div>
+                    <h3 class="text-xl font-semibold text-text-main mb-2">還沒有文章</h3>
+                    <p class="text-text-muted">請稍後再來查看最新內容。</p>
+                </div>
+            `;
+            return;
+        }
+
+        const articlesHTML = posts.map(post => `
+            <article class="group flex flex-col overflow-hidden">
+                <a class="block overflow-hidden rounded-2xl" href="article.html?id=${post.id}">
+                    <img alt="${post.title}"
+                         class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                         src="${post.featuredImage}"
+                         onerror="this.src='https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400'"/>
+                </a>
+                <div class="mt-6 flex flex-col">
+                    <div class="mb-3 flex items-center gap-4 text-sm font-medium text-text-subtle">
+                        <span>${post.publishedDate}</span>
+                        <span class="text-primary">•</span>
+                        <span class="text-primary">${post.category}</span>
+                        <span class="text-primary">•</span>
+                        <span>${post.readTime} 分鐘閱讀</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-text-main group-hover:text-primary transition-colors">
+                        <a href="article.html?id=${post.id}">${post.title}</a>
+                    </h2>
+                    <p class="mt-3 text-base leading-relaxed text-text-subtle line-clamp-3">
+                        ${post.excerpt}
+                    </p>
+                </div>
+            </article>
+        `).join('');
+
+        container.innerHTML = articlesHTML;
+    }
+
+    function showError(message) {
+        document.getElementById('blog-posts').innerHTML = `
+            <div class="col-span-full text-center py-16">
+                <h3 class="text-xl font-semibold text-text-main mb-2">發生錯誤</h3>
+                <p class="text-text-muted">${message}</p>
+            </div>
+        `;
+    }
+
+    // 聯繫模態框功能
+    function setupContactModal() {
+        const contactModal = document.getElementById('contact-sales-modal');
+        const contactModalContent = document.getElementById('contact-modal-content');
+        const closeContactModal = document.getElementById('close-contact-modal');
+        const footerContactBtn = document.getElementById('footer-contact-btn');
+
+        // Show modal function
+        function showContactModal() {
+            contactModal.classList.remove('hidden');
+            setTimeout(() => {
+                contactModalContent.classList.remove('scale-95', 'opacity-0');
+                contactModalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        // Hide modal function
+        function hideContactModal() {
+            contactModalContent.classList.remove('scale-100', 'opacity-100');
+            contactModalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                contactModal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Event listeners
+        if (footerContactBtn) footerContactBtn.addEventListener('click', showContactModal);
+        if (closeContactModal) closeContactModal.addEventListener('click', hideContactModal);
+
+        // Close modal when clicking backdrop
+        if (contactModal) {
+            contactModal.addEventListener('click', function(e) {
+                if (e.target === contactModal) {
+                    hideContactModal();
+                }
+            });
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && contactModal && !contactModal.classList.contains('hidden')) {
+                hideContactModal();
+            }
+        });
+    }
+</script>
+
+<script src="shared/demo-modal.js"></script>
+
+</body>
+</html>
