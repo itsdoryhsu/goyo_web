@@ -80,8 +80,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <main class="pt-20">
+<!-- Dynamic Demo Section -->
 <section class="relative pt-16 pb-24 lg:pt-24 lg:pb-32 px-6 overflow-hidden">
-<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-gradient-to-b from-accent/40 via-primary/5 to-transparent rounded-full blur-3xl -z-10 opacity-60"></div>
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[1000px] bg-gradient-to-b from-accent/40 via-primary/5 to-transparent rounded-full blur-3xl -z-10 opacity-60"></div>
 <div class="max-w-7xl mx-auto">
 <div class="text-center max-w-3xl mx-auto mb-16">
 <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] mb-6 text-text-main heading-chinese">
@@ -91,100 +92,942 @@ document.addEventListener('DOMContentLoaded', function() {
                         上傳檔案立即訓練您的臨時代理。無需程式碼。純粹的 AI 效率。
                     </p>
 </div>
-<div class="grid lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
-<div class="bg-white rounded-xl p-8 shadow-lg flex flex-col h-full min-h-[500px] border border-gray-100 relative group">
-<div class="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl pointer-events-none"></div>
-<div class="flex items-center gap-3 mb-6 z-10">
-<div class="p-2 bg-accent rounded-lg text-primary-dark">
-<span class="material-symbols-outlined text-2xl">upload_file</span>
+
+<!-- Split View Demo -->
+<div class="max-w-7xl mx-auto">
+<div class="grid lg:grid-cols-[400px,1fr] gap-8 items-start">
+<!-- Left Navigation -->
+<div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100 sticky top-24">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-text-main">產品演示</h3>
+<button id="play-pause-btn" class="p-2 bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary">pause</span>
+</button>
 </div>
-<div>
-<h3 class="font-bold text-lg">上傳知識庫</h3>
-<p class="text-sm text-gray-500">支援格式：PDF、DOCX、TXT</p>
+
+<!-- Steps List -->
+<div class="space-y-4" id="steps-list">
+<div class="step-item cursor-pointer p-4 rounded-xl border border-gray-200 hover:border-primary/50 transition-all" data-step="1">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">1</div>
+<h4 class="font-semibold text-text-main">定義角色</h4>
+</div>
+<p class="text-sm text-text-muted">賦予 Agent 專業背景與目標</p>
+</div>
+
+<div class="step-item cursor-pointer p-4 rounded-xl border border-gray-200 hover:border-primary/50 transition-all" data-step="2">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 text-sm font-bold">2</div>
+<h4 class="font-semibold text-text-main">匯入知識庫</h4>
+</div>
+<p class="text-sm text-text-muted">拖拉文件即可完成數據餵養</p>
+</div>
+
+<div class="step-item cursor-pointer p-4 rounded-xl border border-gray-200 hover:border-primary/50 transition-all" data-step="3">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 text-sm font-bold">3</div>
+<h4 class="font-semibold text-text-main">助理準備</h4>
+</div>
+<p class="text-sm text-text-muted">整理資料並準備上線</p>
+</div>
+
+<div class="step-item cursor-pointer p-4 rounded-xl border border-gray-200 hover:border-primary/50 transition-all" data-step="4">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 text-sm font-bold">4</div>
+<h4 class="font-semibold text-text-main">連接服務</h4>
+</div>
+<p class="text-sm text-text-muted">整合到客服平台</p>
+</div>
+
+<div class="step-item cursor-pointer p-4 rounded-xl border border-gray-200 hover:border-primary/50 transition-all" data-step="5">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 text-sm font-bold">5</div>
+<h4 class="font-semibold text-text-main">客服實況</h4>
+</div>
+<p class="text-sm text-text-muted">真實預約對話展示</p>
 </div>
 </div>
-<div class="flex-1 border-2 border-dashed border-primary/30 rounded-lg flex flex-col items-center justify-center p-10 transition-colors hover:border-primary hover:bg-primary/5 cursor-pointer z-10 bg-white/50 backdrop-blur-sm">
-<div class="w-16 h-16 rounded-full bg-accent mb-4 flex items-center justify-center text-primary-dark">
-<span class="material-symbols-outlined text-3xl">cloud_upload</span>
 </div>
-<p class="font-semibold text-text-main mb-2">點擊或拖拽檔案到此區域</p>
-<p class="text-sm text-gray-500 text-center max-w-xs">上傳公司政策 PDF 或產品手冊立即測試代理功能。</p>
-<div class="mt-8 flex flex-col gap-3 w-full max-w-xs">
-<div class="flex items-center gap-3 p-3 bg-white border border-gray-100 rounded-lg shadow-sm">
-<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
-<div class="flex-1 min-w-0">
-<p class="text-sm font-medium truncate">Quarterly_Sales_Report_Q3.pdf</p>
-<p class="text-xs text-green-600 font-medium">準備分析</p>
-</div>
-<span class="material-symbols-outlined text-gray-400 text-sm">check_circle</span>
-</div>
-</div>
-</div>
-</div>
-<div class="bg-white rounded-xl p-0 shadow-sm border border-gray-100 h-full min-h-[500px] flex flex-col overflow-hidden relative">
-<div class="p-4 border-b border-gray-100 flex items-center justify-between bg-white z-20">
+
+<!-- Right Simulator -->
+<div class="bg-white rounded-2xl p-1 shadow-2xl border border-gray-200">
+<div class="bg-white rounded-xl overflow-hidden shadow-inner">
+<!-- Simulator Header -->
+<div class="bg-gray-50 px-4 py-3 flex items-center justify-between border-b border-gray-200">
 <div class="flex items-center gap-3">
-<div class="relative">
-<div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white shadow-lg">
-<span class="material-symbols-outlined">smart_toy</span>
+<div class="w-6 h-6 bg-primary rounded flex items-center justify-center">
+<span class="text-white text-xs font-bold">G</span>
 </div>
-<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
+<span class="text-gray-800 font-semibold">Goyo Business Console</span>
 </div>
-<div>
-<h3 class="font-bold text-sm">Goyo Demo Agent</h3>
-<p class="text-xs text-gray-500">已連結到上傳檔案</p>
-</div>
-</div>
-<button class="text-gray-400 hover:text-gray-600">
-<span class="material-symbols-outlined">refresh</span>
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">Live</span>
+<button class="p-1 text-gray-400 hover:text-gray-600">
+<span class="material-symbols-outlined text-sm">settings</span>
 </button>
 </div>
-<div class="flex-1 bg-gray-50/50 p-6 flex flex-col gap-6 overflow-y-auto">
-<div class="flex justify-end gap-3">
-<div class="max-w-[80%]">
-<div class="bg-primary text-white px-5 py-3 rounded-2xl rounded-tr-none shadow-md text-sm leading-relaxed">
-                                        能否為我總結剛上傳的第三季報告中的關鍵績效指標？
-                                    </div>
-<p class="text-xs text-gray-400 text-right mt-1">使用者 • 剛剛</p>
 </div>
-<div class="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0 bg-cover bg-center" data-alt="User avatar placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCpVcCkyRUthILBZf-pqtWW781D55Bo-HWKmd7DRqEzOxM-_f-cLY-LAcL47iVyOPl8YHW1f1KRZ3_bbyeMisR5KrIY33vx2tpSrjwXEHPZ-RVgCz_W5k-iA6X4fReOe6Vq3sQJY92ieeOsTYqKO-UPQVs4EG1udubCH5tx6L3RuIXNr5_BFOkCMXFFv7ZNduQyfl6dScjbwJKkXzI8gqC6J-p3Y6dGTBfL-SmRfXH1x9tG5-At0zVQe3XnHb9dai-Sql8vZvCbQe0');"></div>
-</div>
-<div class="flex justify-start gap-3">
-<div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-purple-600 flex-shrink-0 flex items-center justify-center text-white text-xs">
-<span class="material-symbols-outlined text-[16px]">smart_toy</span>
-</div>
-<div class="max-w-[85%]">
-<div class="bg-accent/40 text-text-main px-5 py-4 rounded-2xl rounded-tl-none text-sm leading-relaxed border border-accent">
-<p class="mb-2 font-semibold text-primary-dark">分析完成</p>
-<p>基於第三季銷售報告，以下為關鍵指標：</p>
-<ul class="list-disc pl-4 mt-2 space-y-1">
-<li><strong>總營收：</strong> $4.2M (+15% 年增率)</li>
-<li><strong>客戶獲取成本：</strong> 降低 12%</li>
-<li><strong>客戶留存率：</strong> 94% (高表現)</li>
-</ul>
-</div>
-<p class="text-xs text-gray-400 mt-1">Goyo 代理 • 剛剛</p>
-</div>
-</div>
-<div class="flex justify-start gap-3 opacity-50">
-<div class="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0"></div>
-<div class="bg-gray-100 px-4 py-3 rounded-2xl rounded-tl-none flex items-center gap-1">
-<div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></div>
-<div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce delay-75"></div>
-<div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce delay-150"></div>
-</div>
-</div>
-</div>
-<div class="p-4 bg-white border-t border-gray-100">
-<div class="relative">
-<input class="w-full pl-4 pr-12 py-3 bg-gray-50 border-none rounded-full text-sm focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all" placeholder="詢問其他問題..." type="text"/>
-<button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition-colors">
-<span class="material-symbols-outlined text-sm">arrow_upward</span>
-</button>
-</div>
+
+<!-- Demo Content Area -->
+<div class="h-[800px] p-6 relative overflow-hidden bg-white" id="demo-content">
+<!-- Step 1: Define Role -->
+<div class="demo-step active" data-step="1">
+    <div class="mb-6">
+        <nav class="text-sm breadcrumbs">
+            <span class="text-gray-500">工作流程</span>
+            <span class="text-gray-400 mx-2">/</span>
+            <span class="text-gray-800 font-medium">新增助理</span>
+        </nav>
+    </div>
+
+    <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+        <div class="border-b border-gray-200 p-4">
+            <h3 class="text-lg font-semibold text-gray-800">設定助理角色</h3>
+            <p class="text-gray-600 text-sm mt-1">為您的預約服務定義專業助理</p>
+        </div>
+
+        <div class="p-6">
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">助理名稱</label>
+                    <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 font-medium text-gray-800" value="美容預約助理" readonly />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">服務配置</label>
+                    <div class="bg-gray-50 border border-gray-200 rounded-md p-4 space-y-3">
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <div class="font-medium text-gray-700 mb-1">🏢 服務類型</div>
+                                <div class="text-primary font-semibold min-h-[1.25rem]" id="type-service"></div>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-700 mb-1">⏰ 營業時間</div>
+                                <div class="text-gray-600 min-h-[1.25rem]" id="type-hours"></div>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-700 mb-1">📅 預約規則</div>
+                                <div class="text-gray-600 min-h-[1.25rem]" id="type-rules"></div>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-700 mb-1">💬 服務語調</div>
+                                <div class="text-gray-600 min-h-[1.25rem]" id="type-tone"></div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 pt-3 border-t border-gray-200">
+                            <div class="font-medium text-gray-700 mb-2">🎯 主要職責</div>
+                            <div class="text-gray-600 text-sm space-y-1.5">
+                                <div class="min-h-[1.25rem]" id="type-resp-1"></div>
+                                <div class="min-h-[1.25rem]" id="type-resp-2"></div>
+                                <div class="min-h-[1.25rem]" id="type-resp-3"></div>
+                                <div class="min-h-[1.25rem]" id="type-resp-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-4 border-t border-gray-100">
+                    <button class="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-all shadow-md active:scale-95">
+                        下一步：上傳文件
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+
+<!-- Step 2: Knowledge Base -->
+<div class="demo-step" data-step="2">
+    <div class="mb-6">
+        <nav class="text-sm breadcrumbs">
+            <span class="text-gray-500">工作流程</span>
+            <span class="text-gray-400 mx-2">/</span>
+            <span class="text-gray-800 font-medium">文件管理</span>
+        </nav>
+    </div>
+
+    <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+        <div class="border-b border-gray-200 p-4 flex items-center justify-between">
+            <div>
+                <h3 class="text-lg font-semibold text-gray-800">服務知識庫</h3>
+                <p class="text-gray-600 text-sm mt-1">上傳服務資料讓助理了解您的業務內容</p>
+            </div>
+            <button id="upload-trigger-btn" class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-primary-dark transition-all flex items-center shadow-sm">
+                <span class="material-symbols-outlined text-sm mr-1">add</span>
+                上傳文件
+            </button>
+        </div>
+
+        <div class="p-6">
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center mb-6 bg-gray-50">
+                <div class="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <span class="material-symbols-outlined text-gray-500">upload_file</span>
+                </div>
+                <p class="text-gray-600 mb-2">拖拽檔案到此處或點擊上傳</p>
+            </div>
+
+            <div class="pdf-upload-animation opacity-0 transform translate-y-4 transition-all duration-500">
+                <div class="space-y-3">
+                    <h4 class="font-medium text-gray-700 text-sm">已上傳文件 (2)</h4>
+                    <div class="space-y-3">
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 file-item opacity-0 transform translate-y-2 transition-all duration-500">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-purple-600">description</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800 text-sm">美容服務價目表_2026.pdf</div>
+                                        <div class="text-xs text-gray-500">1.8 MB • 已完成解析</div>
+                                    </div>
+                                </div>
+                                <span class="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded font-medium">已上傳</span>
+                            </div>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 file-item opacity-0 transform translate-y-2 transition-all duration-500">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-purple-600">schedule</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800 text-sm">預約政策與流程.docx</div>
+                                        <div class="text-xs text-gray-500">952 KB • 已完成解析</div>
+                                    </div>
+                                </div>
+                                <span class="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded font-medium">已上傳</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end pt-4 border-t border-gray-100 mt-6">
+                <button class="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-all shadow-md active:scale-95">
+                    下一步：助理訓練
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Step 3: Assistant Preparation -->
+<div class="demo-step" data-step="3">
+    <div class="mb-6">
+        <nav class="text-sm breadcrumbs">
+            <span class="text-gray-500">工作流程</span>
+            <span class="text-gray-400 mx-2">/</span>
+            <span class="text-gray-800 font-medium">助理準備</span>
+        </nav>
+    </div>
+
+    <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+        <div class="border-b border-gray-200 p-4">
+            <h3 class="text-lg font-semibold text-gray-800">助理準備中</h3>
+            <p class="text-gray-600 text-sm mt-1">正在整理服務資料並準備上線服務</p>
+        </div>
+
+        <div class="p-6">
+            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-6">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-purple-600 text-sm">settings</span>
+                    </div>
+                    <div>
+                        <div class="font-medium text-purple-900">配置進度</div>
+                        <div class="text-purple-700 text-sm training-percentage">0%</div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="h-2 bg-purple-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-primary training-progress transition-all duration-300 ease-out" style="width: 0%"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-2 text-sm">
+                        <div class="flex items-center justify-between" id="train-step-1">
+                            <span class="text-gray-700">✓ 服務資料整理</span>
+                            <span class="text-green-600">完成</span>
+                        </div>
+                        <div class="flex items-center justify-between" id="train-step-2">
+                            <span class="text-gray-700">✓ 預約規則設定</span>
+                            <span class="text-green-600">完成</span>
+                        </div>
+                        <div class="flex items-center justify-between" id="train-step-3">
+                            <span class="text-gray-700">✓ 助理最佳化中</span>
+                            <span class="text-green-600">完成</span>
+                        </div>
+                        <div class="flex items-center justify-between" id="train-step-4">
+                            <span class="text-gray-700 training-status">⏳ 上線檢查</span>
+                            <span class="text-purple-600">進行中</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                <div class="text-sm text-gray-600">
+                    <strong>預計完成時間：</strong> 約 1-2 分鐘<br>
+                    <span class="text-xs text-gray-500 mt-1">助理將具備美容預約、價格諮詢、時段安排等專業能力</span>
+                </div>
+            </div>
+
+            <div class="flex justify-end pt-4 border-t border-gray-100">
+                <button class="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-all shadow-md active:scale-95">
+                    下一步：連接通道
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Step 4: Deployment -->
+<div class="demo-step" data-step="4">
+    <div class="mb-6">
+        <nav class="text-sm breadcrumbs">
+            <span class="text-gray-500">工作流程</span>
+            <span class="text-gray-400 mx-2">/</span>
+            <span class="text-gray-800 font-medium">連接服務</span>
+        </nav>
+    </div>
+
+    <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+        <div class="border-b border-gray-200 p-4">
+            <h3 class="text-lg font-semibold text-gray-800">選擇服務通道</h3>
+            <p class="text-gray-600 text-sm mt-1">將預約助理連接到您的客服平台</p>
+        </div>
+
+        <div class="p-6">
+            <div class="grid grid-cols-1 gap-4">
+                <div class="platform-item border-2 border-primary bg-purple-50 rounded-lg p-4 transition-all">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-2xl">language</span>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-800">官網客服</div>
+                                <div class="text-sm text-gray-500">即時線上預約服務</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-1 bg-purple-100 text-primary text-xs rounded font-medium">已連接</span>
+                            <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="platform-line" class="platform-item border-2 border-gray-100 rounded-lg p-4 cursor-pointer transition-all opacity-60">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center icon-box transition-colors duration-300">
+                                <span class="material-symbols-outlined text-gray-400 text-2xl">chat</span>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-800 text-gray-500 platform-title">LINE@ 商家</div>
+                                <div class="text-sm text-gray-500">LINE 官方帳號預約</div>
+                            </div>
+                        </div>
+                        <div class="platform-status text-gray-400 text-sm font-medium">未連接</div>
+                    </div>
+                </div>
+
+                <div class="platform-item border-2 border-gray-100 rounded-lg p-4 opacity-60">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-gray-400 text-2xl">forum</span>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-500">Messenger Business</div>
+                                <div class="text-sm text-gray-500">Messenger 帳號 AI 客服</div>
+                            </div>
+                        </div>
+                        <div class="text-gray-400 text-sm font-medium">未連接</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="deployment-alert" class="mt-6 bg-green-50 border border-green-100 rounded-lg p-4 transition-all opacity-0 transform translate-y-2">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-green-600">check_circle</span>
+                    <div class="text-sm text-green-800" id="deployment-text">
+                        <strong>官網客服已成功上線</strong> - 您的多管道 AI 代理已準備就緒
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end pt-4 border-t border-gray-100 mt-6">
+                <button class="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-all shadow-md active:scale-95">
+                    下一步：查看演示實況
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Step 5: Active Chat -->
+<div class="demo-step" data-step="5">
+    <div class="mb-6">
+        <nav class="text-sm breadcrumbs">
+            <span class="text-gray-500">客服中心</span>
+            <span class="text-gray-400 mx-2">/</span>
+            <span class="text-gray-800 font-medium">即時對話實況</span>
+        </nav>
+    </div>
+
+    <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+        <div class="border-b border-gray-200 p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary">face_2</span>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800">美容預約助理</h3>
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <p class="text-green-600 text-xs">AI 代理在線上</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-gray-400">ID: GY-9980</div>
+        </div>
+
+        <div class="p-6">
+            <div class="bg-gray-50 rounded-lg p-4 h-[550px] overflow-y-auto" id="chat-container">
+                <div class="space-y-4 flex flex-col" id="chat-messages">
+                    
+                    <div class="flex justify-end chat-msg opacity-0">
+                        <div class="max-w-[80%] bg-blue-500 text-white px-4 py-2 rounded-lg rounded-br-none shadow-sm">
+                            <div class="text-sm">我想要深層清潔護理，下週三下午可以嗎？</div>
+                            <div class="text-xs text-blue-100 mt-1">李小姐 • 14:25</div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-start chat-msg opacity-0">
+                        <div class="max-w-[85%] bg-white border border-gray-200 px-4 py-3 rounded-lg rounded-bl-none shadow-sm">
+                            <div class="text-sm text-gray-800">
+                                <div class="font-medium text-primary mb-2">🌸 您好，李小姐！</div>
+                                <div class="space-y-2">
+                                    <div>很高興為您服務！我們的臉部護理療程包括：</div>
+                                    <div class="bg-purple-50 border border-purple-100 rounded-lg p-2 text-xs space-y-1">
+                                        <div>• 深層清潔護理 ($1,200 - 60分鐘)</div>
+                                        <div>• 保濕修復護理 ($1,500 - 75分鐘)</div>
+                                        <div>• 抗敏舒緩護理 ($1,800 - 90分鐘)</div>
+                                    </div>
+                                    <div>請問您比較偏好哪一種呢？</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end chat-msg opacity-0">
+                        <div class="max-w-[80%] bg-blue-500 text-white px-4 py-2 rounded-lg rounded-br-none shadow-sm">
+                            <div class="text-sm">謝謝！就選擇深層清潔護理吧</div>
+                            <div class="text-xs text-blue-100 mt-1">李小姐 • 14:26</div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-start chat-msg opacity-0">
+                        <div class="max-w-[85%] bg-white border border-gray-200 px-4 py-3 rounded-lg rounded-bl-none shadow-sm">
+                            <div class="text-sm text-gray-800">
+                                <div class="space-y-2">
+                                    <div>讓我為您查詢下週三的可用時段...</div>
+                                    <div class="bg-purple-50 border border-purple-100 rounded-lg p-3">
+                                        <div class="font-medium text-primary mb-2">✓ 找到可用時段</div>
+                                        <div class="text-sm space-y-1">
+                                            <div>🕐 14:00-15:00 (可預約)</div>
+                                            <div>🕒 15:30-16:30 (可預約)</div>
+                                        </div>
+                                    </div>
+                                    <div>請問您偏好哪個時段？</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end chat-msg opacity-0">
+                        <div class="max-w-[80%] bg-blue-500 text-white px-4 py-2 rounded-lg rounded-br-none shadow-sm">
+                            <div class="text-sm">想預約14:00這個時段</div>
+                            <div class="text-xs text-blue-100 mt-1">李小姐 • 14:27</div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-start chat-msg opacity-0">
+                        <div class="max-w-[85%] bg-white border border-gray-200 px-4 py-3 rounded-lg rounded-bl-none shadow-sm">
+                            <div class="text-sm text-gray-800">
+                                <div class="space-y-2">
+                                    <div>好的！已為您預約完成 🎉</div>
+                                    <div class="bg-purple-50 border border-purple-100 rounded-lg p-3">
+                                        <div class="font-medium text-primary mb-1">📅 預約詳情</div>
+                                        <div class="text-sm space-y-1">
+                                            <div>• 2026年1月28日 (週三) 14:00</div>
+                                            <div>• 療程：深層清潔護理</div>
+                                        </div>
+                                    </div>
+                                    <div>期待為您服務！</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Input Area -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
+
+<style>
+.typing-animation {
+    animation: typing 3s steps(40, end) forwards;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.pdf-upload-animation {
+    transition: all 0.5s ease-out;
+}
+
+.demo-step {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+}
+
+.demo-step.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.step-item {
+    transition: all 0.3s ease;
+}
+
+.step-item.active {
+    border-color: #9980ff !important;
+    background-color: rgba(153, 128, 255, 0.05) !important;
+}
+
+.step-item.active .w-8 {
+    background-color: #9980ff !important;
+    color: white !important;
+}
+
+.step-item.completed .w-8 {
+    background-color: #22c55e !important;
+    color: white !important;
+}
+
+.platform-item.activating {
+    animation: platformActivate 0.8s ease-out forwards;
+}
+
+@keyframes platformActivate {
+    0% {
+        opacity: 0.3;
+        transform: scale(0.95);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.user-message-animation {
+    animation: messageSlideIn 0.5s ease-out;
+}
+
+.agent-response-animation {
+    transition: opacity 0.5s ease-out 1s;
+}
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.progress-bar .h-full {
+    transition: width 5s linear;
+}
+
+/* Chat Animation Styles */
+@keyframes chatMessageSlideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.chat-message-appear {
+    animation: chatMessageSlideIn 0.5s ease-out forwards;
+}
+
+@keyframes chatMessageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+<script>
+class DynamicDemo {
+    constructor() {
+        this.currentStep = 1;
+        this.totalSteps = 5;
+        this.isPlaying = true;
+        this.timer = null;
+        this.activeTimers = []; 
+        this.init();
+    }
+
+    init() {
+        this.setupEventListeners();
+        this.goToStep(1); 
+    }
+
+    clearAllTimers() {
+        if (this.timer) clearTimeout(this.timer);
+        this.activeTimers.forEach(t => clearTimeout(t));
+        this.activeTimers = [];
+    }
+
+    setupEventListeners() {
+        document.querySelectorAll('.step-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const step = parseInt(item.dataset.step);
+                this.pauseAutoplay();
+                this.goToStep(step);
+            });
+        });
+
+        const btn = document.getElementById('play-pause-btn');
+        if (btn) {
+            btn.addEventListener('click', () => {
+                if (this.isPlaying) this.pauseAutoplay();
+                else this.resumeAutoplay();
+            });
+        }
+    }
+
+    scheduleNextStep(customDuration = null) {
+        if (this.timer) clearTimeout(this.timer);
+        if (!this.isPlaying) return;
+
+        const duration = customDuration || 3500;
+        this.timer = setTimeout(() => {
+            const nextStep = (this.currentStep % this.totalSteps) + 1;
+            this.goToStep(nextStep);
+        }, duration);
+    }
+
+    async goToStep(step) {
+        this.clearAllTimers();
+        this.currentStep = step;
+
+        // 1. 更新左側 UI
+        document.querySelectorAll('.step-item').forEach((item, index) => {
+            const itemStep = index + 1;
+            const circle = item.querySelector('.w-8');
+            item.classList.remove('active');
+            if (itemStep === step) {
+                item.classList.add('active');
+                circle.style.backgroundColor = '#9980ff';
+                circle.style.color = '#ffffff';
+            } else {
+                circle.style.backgroundColor = '#e5e7eb';
+                circle.style.color = '#6b7280';
+            }
+        });
+
+        // 2. 切換面板
+        document.querySelectorAll('.demo-step').forEach(el => el.classList.remove('active'));
+        const targetDemo = document.querySelector(`.demo-step[data-step="${step}"]`);
+        if (targetDemo) targetDemo.classList.add('active');
+
+        // 3. 執行動畫
+        await this.executeStepAnimation(step);
+        
+        // 4. 動畫完成後的銜接
+        if (this.isPlaying) {
+            // Step 1 內容多，需要更多緩衝；其餘步驟標準緩衝
+            const buffer = (step === 1) ? 200 : 800;
+            await new Promise(r => {
+                const t = setTimeout(r, buffer);
+                this.activeTimers.push(t);
+            });
+            
+            this.animateNextButton(step);
+            
+            // Step 5 停留長一點讓使用者看對話，其餘步驟快速跳轉
+            const jumpDelay = (step === 5) ? 6000 : 1500;
+            this.scheduleNextStep(jumpDelay); 
+        }
+    }
+
+    async executeStepAnimation(step) {
+        switch(step) {
+            case 1: await this.animateRoleDefinition(); break;
+            case 2: await this.animateKnowledgeBase(); break;
+            case 3: await this.animateTraining(); break;
+            case 4: await this.animateDeployment(); break;
+            case 5: await this.animateLiveOperation(); break;
+        }
+    }
+
+    // --- 各步驟動畫邏輯 ---
+
+    async animateRoleDefinition() {
+        const tasks = [
+            { id: 'type-service', text: '美容護理預約' },
+            { id: 'type-hours', text: '週一至週六 9:00-18:00' },
+            { id: 'type-rules', text: '提前24小時預約' },
+            { id: 'type-tone', text: '親切專業、有效率' },
+            { id: 'type-resp-1', text: '• 協助客戶查詢服務項目和價格' },
+            { id: 'type-resp-2', text: '• 安排預約時間並確認訂單' },
+            { id: 'type-resp-3', text: '• 處理預約變更和取消申請' },
+            { id: 'type-resp-4', text: '• 提供專業建議和售後服務' }
+        ];
+
+        tasks.forEach(t => { const el = document.getElementById(t.id); if (el) el.textContent = ''; });
+
+        for (const t of tasks) {
+            const el = document.getElementById(t.id);
+            if (el && this.currentStep === 1) {
+                await this.typeWriterEffect(el, t.text, 20);
+                await new Promise(r => setTimeout(r, 100));
+            }
+        }
+    }
+
+    typeWriterEffect(element, text, speed) {
+        return new Promise(resolve => {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i); i++;
+                    setTimeout(type, speed);
+                } else resolve();
+            }
+            type();
+        });
+    }
+
+    animateKnowledgeBase() {
+        return new Promise(resolve => {
+            const uploadBtn = document.getElementById('upload-trigger-btn');
+            const fileListContainer = document.querySelector('.pdf-upload-animation');
+            const fileItems = document.querySelectorAll('.file-item');
+            
+            if (!uploadBtn || !fileListContainer) return resolve();
+
+            // 1. 初始化隱藏所有文件
+            fileListContainer.style.opacity = '0';
+            fileItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(10px)';
+            });
+
+            // 2. 等待 1 秒後模擬點擊按鈕
+            const t1 = setTimeout(() => {
+                if (this.currentStep !== 2) return resolve();
+                
+                uploadBtn.style.transform = 'scale(0.92)';
+                const t2 = setTimeout(() => {
+                    uploadBtn.style.transform = 'scale(1)';
+                    
+                    // 3. 顯示主容器
+                    fileListContainer.style.opacity = '1';
+                    
+                    // 4. 錯開時間浮現兩個文件
+                    fileItems.forEach((item, index) => {
+                        const tStagger = setTimeout(() => {
+                            if (this.currentStep !== 2) return;
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                            
+                            // 兩個文件都出現後，等待閱讀緩衝再繼續下一步
+                            if (index === fileItems.length - 1) {
+                                const tEnd = setTimeout(resolve, 1800);
+                                this.activeTimers.push(tEnd);
+                            }
+                        }, index * 450); // 每 0.45 秒出現一個
+                        this.activeTimers.push(tStagger);
+                    });
+                    
+                }, 150);
+                this.activeTimers.push(t2);
+            }, 1000);
+            this.activeTimers.push(t1);
+        });
+    }
+
+    animateTraining() {
+        return new Promise(resolve => {
+            const progressBar = document.querySelector('.training-progress');
+            const percentage = document.querySelector('.training-percentage');
+            if (!progressBar) return resolve();
+
+            progressBar.style.width = '0%';
+            let progress = 0;
+            const interval = setInterval(() => {
+                if (this.currentStep !== 3) { clearInterval(interval); return resolve(); }
+                progress += 2;
+                progressBar.style.width = `${progress}%`;
+                if (percentage) percentage.textContent = `${progress}%`;
+                if (progress >= 100) { clearInterval(interval); resolve(); }
+            }, 50);
+        });
+    }
+
+    // Step 4: LINE 部署模擬 (從未連接變更為已連接)
+    animateDeployment() {
+        return new Promise(resolve => {
+            const linePlatform = document.getElementById('platform-line');
+            const alertBox = document.getElementById('deployment-alert');
+            const alertText = document.getElementById('deployment-text');
+            
+            if (!linePlatform) return resolve();
+
+            // 1. 重設狀態 (確保每次進入此步都是灰色)
+            linePlatform.classList.add('opacity-60', 'border-gray-100');
+            linePlatform.classList.remove('border-primary', 'bg-purple-50', 'border-2');
+            if (alertBox) alertBox.classList.add('opacity-0', 'translate-y-2');
+
+            // 2. 等待 1.2 秒後執行「點擊」
+            const tStart = setTimeout(() => {
+                if (this.currentStep !== 4) return resolve();
+                
+                // 模擬點擊縮放動畫
+                linePlatform.style.transform = 'scale(0.95)';
+                linePlatform.style.transition = 'all 0.2s ease';
+                
+                const tClick = setTimeout(() => {
+                    linePlatform.style.transform = 'scale(1)';
+                    
+                    // 3. 變更為「已連接」視覺 (對齊官網樣式)
+                    linePlatform.classList.remove('opacity-60', 'border-gray-100');
+                    linePlatform.classList.add('border-primary', 'bg-purple-50', 'border-2');
+                    
+                    const iconBox = linePlatform.querySelector('.icon-box');
+                    const iconText = linePlatform.querySelector('.material-symbols-outlined');
+                    const platformTitle = linePlatform.querySelector('.platform-title');
+                    const statusText = linePlatform.querySelector('.platform-status');
+                    
+                    if (iconBox) iconBox.classList.replace('bg-gray-100', 'bg-purple-100');
+                    if (iconText) iconText.classList.replace('text-gray-400', 'text-primary');
+                    if (platformTitle) platformTitle.classList.remove('text-gray-500');
+                    
+                    if (statusText) {
+                        statusText.innerHTML = `
+                            <div class="flex items-center gap-2">
+                                <span class="px-2 py-1 bg-purple-100 text-primary text-xs rounded font-medium">已連接</span>
+                                <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                            </div>
+                        `;
+                    }
+
+                    // 4. 顯示下方成功提示，並更新文字
+                    if (alertBox) {
+                        alertBox.classList.remove('opacity-0', 'translate-y-2');
+                        if (alertText) {
+                            alertText.innerHTML = `<strong>官網與 LINE 客服已成功上線</strong> - 您可以開始進行跨平台預約測試`;
+                        }
+                    }
+
+                    // 5. 動畫演完，停留 2 秒後結束 Promise 並進入 scheduleNextStep
+                    const tEnd = setTimeout(resolve, 2000); 
+                    this.activeTimers.push(tEnd);
+                }, 200);
+                this.activeTimers.push(tClick);
+            }, 1200);
+            
+            this.activeTimers.push(tStart);
+        });
+    }
+
+    animateLiveOperation() {
+        return new Promise(resolve => {
+            const messages = document.querySelectorAll('.chat-msg');
+            const chatContainer = document.getElementById('chat-container');
+            if (chatContainer) chatContainer.scrollTop = 0;
+
+            messages.forEach(msg => { msg.classList.remove('chat-message-appear'); msg.classList.add('opacity-0'); });
+
+            const sequence = [800, 2500, 4500, 6500, 8500, 10500];
+            sequence.forEach((delay, index) => {
+                const t = setTimeout(() => {
+                    if (this.currentStep !== 5) return;
+                    if (messages[index]) {
+                        messages[index].classList.remove('opacity-0');
+                        messages[index].classList.add('chat-message-appear');
+                        if (chatContainer) chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' });
+                    }
+                    if (index === sequence.length - 1) resolve();
+                }, delay);
+                this.activeTimers.push(t);
+            });
+        });
+    }
+
+    animateNextButton(step) {
+        const activeStepEl = document.querySelector(`.demo-step[data-step="${step}"]`);
+        
+        // 💡 修正選擇器：只抓取位於底部 flex 容器內的按鈕，避開標題列或內容區的功能按鈕
+        const btn = activeStepEl?.querySelector('div.flex.justify-end button');
+
+        if (btn) {
+            // 這裡不需要額外的延遲，因為 goToStep 已經處理了 await
+            btn.style.transition = 'transform 0.15s ease';
+            btn.style.transform = 'scale(0.92)';
+            const t = setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+            }, 150);
+            this.activeTimers.push(t);
+        }
+    }
+
+    pauseAutoplay() { this.isPlaying = false; this.clearAllTimers(); this.updatePlayPauseButton(); }
+    resumeAutoplay() { this.isPlaying = true; this.scheduleNextStep(); this.updatePlayPauseButton(); }
+    updatePlayPauseButton() {
+        const btn = document.getElementById('play-pause-btn');
+        const icon = btn?.querySelector('.material-symbols-outlined');
+        if (icon) icon.textContent = this.isPlaying ? 'pause' : 'play_arrow';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => { new DynamicDemo(); });
+
+</script>
 
 <!-- Features Deep Dive -->
 <section class="py-24 bg-gray-50">
