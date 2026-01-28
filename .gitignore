@@ -5,6 +5,14 @@
 __pycache__/
 *.pyc
 
+# Next.js and Node.js
+goyo_tech_next/node_modules/
+goyo_tech_next/.next/
+goyo_tech_next/out/
+goyo_tech_next/build/
+goyo_tech_next/*.tsbuildinfo
+goyo_tech_next/tsconfig.tsbuildinfo
+
 # Editor files
 .vscode/
 .idea/
