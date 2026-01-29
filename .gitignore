@@ -17,6 +17,10 @@ goyo_tech_next/tsconfig.tsbuildinfo
 .vscode/
 .idea/
 
+# HTML files (old version, not needed)
+*.html
+**/*.html
+
 # OS files
 .DS_Store
 Thumbs.db

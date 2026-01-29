@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd goyo_tech_next && npm run build",
+  "devCommand": "cd goyo_tech_next && npm run dev",
+  "installCommand": "cd goyo_tech_next && npm install",
+  "outputDirectory": "goyo_tech_next/.next"
+}
