@@ -4,13 +4,15 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Button from './Button'
-import ContactModal from './ContactModal'
 
-export default function Header() {
+interface HeaderProps {
+  onContactClick?: () => void
+}
+
+export default function Header({ onContactClick }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [contactModalOpen, setContactModalOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,14 +73,16 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <Button
-            variant="primary"
-            size="md"
-            onClick={() => setContactModalOpen(true)}
-          >
-            預約諮詢
-          </Button>
+          {/* CTA Button - 只在桌面版顯示 */}
+          <div className="hidden md:block">
+            <Button
+              variant="primary"
+              size="md"
+              onClick={() => onContactClick?.()}
+            >
+              預約諮詢
+            </Button>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -101,7 +105,7 @@ export default function Header() {
             {[
               { name: '首頁', href: '/' },
               // { name: '解決方案', href: '/products' },
-              { name: '關於我們', href: '/about' },
+              { name: '關於果友', href: '/about' },
               { name: '動態專欄', href: '/blog' }
             ].map((item) => (
               <Link
@@ -118,7 +122,7 @@ export default function Header() {
                 size="md"
                 className="w-full"
                 onClick={() => {
-                  setContactModalOpen(true)
+                  onContactClick?.()
                   setMobileMenuOpen(false)
                 }}
               >
@@ -129,11 +133,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Contact Modal */}
-      <ContactModal
-        isOpen={contactModalOpen}
-        onClose={() => setContactModalOpen(false)}
-      />
     </header>
   )
 }

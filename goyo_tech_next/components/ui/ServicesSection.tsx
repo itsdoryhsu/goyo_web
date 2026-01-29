@@ -361,11 +361,11 @@ export default function ServicesSection() {
                 <h3 className="text-xl font-bold text-[#100c1d] mb-6">為什麼選擇果友科技？</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">50+</div>
-                    <div className="text-gray-600 font-medium">成功企業客戶</div>
+                    <div className="text-3xl font-bold text-primary mb-2">10+</div>
+                    <div className="text-gray-600 font-medium">系統開發經驗</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">98%</div>
+                    <div className="text-3xl font-bold text-primary mb-2">99%</div>
                     <div className="text-gray-600 font-medium">客戶滿意度</div>
                   </div>
                   <div className="text-center">
@@ -374,7 +374,7 @@ export default function ServicesSection() {
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-primary mb-2">24/7</div>
-                    <div className="text-gray-600 font-medium">技術支援服務</div>
+                    <div className="text-gray-600 font-medium">Agent代理技術</div>
                   </div>
                 </div>
               </div>

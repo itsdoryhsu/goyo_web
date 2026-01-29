@@ -19,7 +19,7 @@ const floatingCards: FloatingCard[] = [
     number: '01',
     title: 'Technology',
     subtitle: 'Next-Gen Core',
-    image: '/api/placeholder/210/380',
+    image: '',
     alt: 'Technology - 專業技術介面展示',
     translateY: 'translate-y-4',
     border: 'border border-white/40 dark:border-slate-700/50'
@@ -29,7 +29,7 @@ const floatingCards: FloatingCard[] = [
     number: '02',
     title: 'Cooperation',
     subtitle: 'Synergetic Growth',
-    image: '/api/placeholder/210/380',
+    image: '',
     alt: 'Cooperation - 團隊協作展示',
     translateY: '-translate-y-2',
     zIndex: 'z-20',
@@ -40,7 +40,7 @@ const floatingCards: FloatingCard[] = [
     number: '03',
     title: 'Efficiency',
     subtitle: 'Streamlined Flow',
-    image: '/api/placeholder/210/380',
+    image: '',
     alt: 'Efficiency - 效率優化展示',
     translateY: '-translate-y-6',
     border: 'border border-white/40 dark:border-slate-700/50'
@@ -48,13 +48,14 @@ const floatingCards: FloatingCard[] = [
 ]
 
 function FloatingCard({ card }: { card: FloatingCard }) {
+  const gradientMap: { [key: string]: string } = {
+    '1': 'bg-gradient-to-br from-primary/80 to-purple-600/80',
+    '2': 'bg-gradient-to-br from-blue-500/80 to-primary/80',
+    '3': 'bg-gradient-to-br from-purple-500/80 to-pink-500/80'
+  }
+
   return (
-    <div className={`floating-card w-[210px] h-[380px] rounded-[2.5rem] overflow-hidden ${card.translateY} relative group ${card.border} ${card.zIndex || ''} bg-slate-200`}>
-      <img
-        alt={card.alt}
-        className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
-        src={card.image}
-      />
+    <div className={`floating-card w-[210px] h-[380px] rounded-[2.5rem] overflow-hidden ${card.translateY} relative group ${card.border} ${card.zIndex || ''} ${gradientMap[card.id]}`}>
       <div className="absolute inset-0 card-image-overlay flex items-end p-8">
         <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform">
           <span className="text-white font-bold text-xs tracking-[0.2em] uppercase opacity-60">{card.number}</span>
@@ -84,19 +85,14 @@ export default function HeroSection() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <button className="bg-primary hover:bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-lg shadow-2xl shadow-primary/30 transition-all hover:scale-105 flex items-center gap-3">
-              聯絡我們
-              <ArrowRightIcon className="w-5 h-5" />
-            </button>
-
-            <div className="flex items-center gap-6 pl-0 sm:pl-8 sm:border-l border-slate-200 dark:border-slate-800">
+            <div className="flex items-center gap-6">
               <div className="flex -space-x-3">
-                <img alt="Team member" className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-900 object-cover" src="/api/placeholder/40/40" />
-                <img alt="Team member" className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-900 object-cover" src="/api/placeholder/40/40" />
-                <img alt="Team member" className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-900 object-cover" src="/api/placeholder/40/40" />
+                <div className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-900 bg-gradient-to-br from-primary to-purple-600"></div>
+                <div className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-900 bg-gradient-to-br from-blue-500 to-primary"></div>
+                <div className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-900 bg-gradient-to-br from-purple-500 to-pink-500"></div>
               </div>
               <div className="text-sm font-semibold text-slate-500 dark:text-slate-400">
-                500+ 企業信任選擇
+                政府、企業的信任選擇
               </div>
             </div>
           </div>

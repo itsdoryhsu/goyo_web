@@ -58,14 +58,27 @@ const benefits: Benefit[] = [
   },
   {
     title: '生活工作並重',
-    description: '我們重視效率而非時數，不鼓勵加班文化，\n讓生活與工作互不干擾',
+    description: '我們重視效率而非時數，不鼓勵加班，\n讓生活與工作互不干擾',
     icon: <StarIcon className="w-8 h-8" />
   }
 ]
 
 export default function BenefitsSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const itemsPerPage = 4
+  const [isMobile, setIsMobile] = useState(false)
+
+  // 檢測是否為手機版
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkIfMobile()
+    window.addEventListener('resize', checkIfMobile)
+    return () => window.removeEventListener('resize', checkIfMobile)
+  }, [])
+
+  const itemsPerPage = isMobile ? 1 : 4
   const totalPages = Math.ceil(benefits.length / itemsPerPage)
 
   // 自動輪播
@@ -74,38 +87,42 @@ export default function BenefitsSection() {
       setCurrentIndex((prevIndex) =>
         prevIndex + 1 >= totalPages ? 0 : prevIndex + 1
       )
-    }, 8000) // 每8秒切換
+    }, isMobile ? 5000 : 8000) // 手機版5秒，桌面版8秒
 
     return () => clearInterval(timer)
-  }, [totalPages])
+  }, [totalPages, isMobile])
 
   return (
     <section className="py-24 bg-background-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">福利制度與文化</h2>
-          <p className="text-gray-400">我們期待營造一個可以與員工一起進度成長，充滿支持與具備效率當責的工作環境</p>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">福利制度與文化</h2>
+          <p className="text-gray-400 text-sm md:text-base px-4">我們期待營造一個可以與員工一起進度成長，充滿支持與具備效率當責的工作環境</p>
         </div>
 
         <div className="relative overflow-hidden mx-auto max-w-6xl">
-          {/* 輪播容器 - 所有8張卡片排成一行，每次顯示4張 */}
+          {/* 輪播容器 */}
           <div
             className="flex transition-transform duration-700 ease-in-out"
             style={{
-              transform: `translateX(-${currentIndex * 100}%)`, // 每次移動100%（4張卡片的寬度）
+              transform: `translateX(-${currentIndex * 100}%)`,
             }}
           >
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 text-center p-4 bg-gray-800/50 rounded-2xl hover:bg-gray-800 transition-colors mx-2"
-                style={{ width: 'calc(25% - 16px)' }}
+                className={`flex-shrink-0 text-center p-6 md:p-4 bg-gray-800/50 rounded-2xl hover:bg-gray-800 transition-colors ${
+                  isMobile ? 'mx-8' : 'mx-2'
+                }`}
+                style={{
+                  width: isMobile ? 'calc(100% - 64px)' : 'calc(25% - 16px)'
+                }}
               >
-                <div className="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 md:w-16 md:h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
                   {benefit.icon}
                 </div>
-                <h3 className="font-bold mb-2">{benefit.title}</h3>
-                <p className="text-gray-400 text-sm whitespace-pre-line">{benefit.description}</p>
+                <h3 className="font-bold mb-3 text-lg md:text-base">{benefit.title}</h3>
+                <p className="text-gray-400 text-base md:text-sm whitespace-pre-line leading-relaxed">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -117,7 +134,7 @@ export default function BenefitsSection() {
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-colors ${
+              className={`w-3 h-3 md:w-3 md:h-3 rounded-full transition-colors ${
                 currentIndex === index
                   ? 'bg-primary'
                   : 'bg-gray-600 hover:bg-gray-500'
