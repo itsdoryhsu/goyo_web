@@ -72,10 +72,6 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 py-32 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
         {/* Left Content */}
         <div className="space-y-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-bold tracking-wide backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            專業企業技術解決方案
-          </div>
 
           <div className="space-y-6">
             <h1 className="text-5xl md:text-7xl font-black leading-[1.1] tracking-tight">

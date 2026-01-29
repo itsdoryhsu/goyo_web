@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
 import Header from '@/components/ui/Header'
 import Footer from '@/components/ui/Footer'
-import AboutHeroSection from '@/components/ui/AboutHeroSection'
-import MissionSection from '@/components/ui/MissionSection'
-import ClientValueSection from '@/components/ui/ClientValueSection'
-import CompanyValuesSection from '@/components/ui/CompanyValuesSection'
-import WhyJoinUsSection from '@/components/ui/WhyJoinUsSection'
-import EmployeeMessageSection from '@/components/ui/EmployeeMessageSection'
-import CompanyBenefitsSection from '@/components/ui/CompanyBenefitsSection'
+import AboutHeroSectionNew from '@/components/ui/AboutHeroSectionNew'
+import FoundersSection from '@/components/ui/FoundersSection'
+import PartnerMessagesSection from '@/components/ui/PartnerMessagesSection'
+import BenefitsSection from '@/components/ui/BenefitsSection'
+import HighlightsSection from '@/components/ui/HighlightsSection'
 import ContactCTASection from '@/components/ui/ContactCTASection'
 
 export const metadata: Metadata = {
@@ -36,13 +34,11 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white">
       <div className="flex flex-col min-h-screen">
         <Header />
-        <AboutHeroSection />
-        <MissionSection />
-        <ClientValueSection />
-        <CompanyValuesSection />
-        <WhyJoinUsSection />
-        <EmployeeMessageSection />
-        <CompanyBenefitsSection />
+        <AboutHeroSectionNew />
+        <FoundersSection />
+        <PartnerMessagesSection />
+        <BenefitsSection />
+        <HighlightsSection />
         <ContactCTASection />
         <Footer />
       </div>

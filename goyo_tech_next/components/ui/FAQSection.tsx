@@ -11,23 +11,25 @@ interface FAQItemProps {
 
 function FAQItem({ question, answer, isOpen, onToggle }: FAQItemProps) {
   return (
-    <div className="border border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 transition-colors">
+    <div className="border border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 transition-colors duration-300">
       <button
         onClick={onToggle}
-        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white transition-colors"
+        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white transition-colors duration-200"
       >
         <span className="font-semibold text-[#100c1d] text-lg">{question}</span>
-        <div className={`w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center transition-transform ${
+        <div className={`w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center transition-transform duration-300 ease-in-out ${
           isOpen ? 'rotate-45' : 'rotate-0'
         }`}>
           <span className="text-primary font-bold text-lg">+</span>
         </div>
       </button>
 
-      <div className={`overflow-hidden transition-all duration-200 ease-out ${
-        isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+      <div className={`overflow-hidden transition-all duration-400 ease-in-out ${
+        isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
       }`}>
-        <div className="px-6 pb-4 text-[#6b7280] leading-relaxed">
+        <div className={`px-6 pb-4 text-[#6b7280] leading-relaxed transition-all duration-400 ease-in-out ${
+          isOpen ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
+        }`}>
           {answer}
         </div>
       </div>

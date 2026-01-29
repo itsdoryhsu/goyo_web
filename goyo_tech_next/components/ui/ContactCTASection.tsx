@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function ContactCTASection() {
   return (
@@ -10,6 +11,24 @@ export default function ContactCTASection() {
             <div className="absolute bottom-0 left-0 -ml-20 -mb-20 h-[300px] w-[300px] rounded-full bg-primary/20 blur-3xl"></div>
           </div>
           <div className="relative z-10">
+            <div className="flex items-center justify-center gap-6 mb-6">
+              <div className="flex -space-x-4">
+                <Image
+                  src="/scott-avatar.png"
+                  alt="Scott Lin"
+                  width={60}
+                  height={60}
+                  className="rounded-full border-4 border-white shadow-lg"
+                />
+                <Image
+                  src="/doris-avatar.png"
+                  alt="Doris Hsu"
+                  width={60}
+                  height={60}
+                  className="rounded-full border-4 border-white shadow-lg"
+                />
+              </div>
+            </div>
             <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
               準備加入我們嗎？
             </h2>

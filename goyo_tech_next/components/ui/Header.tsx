@@ -8,23 +8,31 @@ import ContactModal from './ContactModal'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [contactModalOpen, setContactModalOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      const scrollPosition = window.scrollY
+      const pageHeight = document.documentElement.scrollHeight - window.innerHeight
+      const scrollPercentage = (scrollPosition / pageHeight) * 100
+
+      setScrolled(scrollPosition > 50)
+      setHidden(scrollPercentage > 50)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className={`fixed left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+      hidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'
+    } ${
       scrolled
         ? 'bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-lg'
         : 'bg-white/80 backdrop-blur-md border-b border-gray-100'
-    }`}>
+    }`} style={{ top: 0 }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -48,8 +56,8 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-8">
             {[
               { name: '首頁', href: '/' },
-              { name: '解決方案', href: '/products' },
-              { name: '關於我們', href: '/about' },
+              // { name: '解決方案', href: '/products' },
+              { name: '關於果友', href: '/about' },
               { name: '動態專欄', href: '/blog' }
             ].map((item) => (
               <Link
@@ -69,7 +77,7 @@ export default function Header() {
             size="md"
             onClick={() => setContactModalOpen(true)}
           >
-            預約演示
+            預約諮詢
           </Button>
 
           {/* Mobile Menu Button */}
@@ -92,7 +100,7 @@ export default function Header() {
           <nav className="flex flex-col gap-4 pt-4 border-t border-gray-100">
             {[
               { name: '首頁', href: '/' },
-              { name: '解決方案', href: '/products' },
+              // { name: '解決方案', href: '/products' },
               { name: '關於我們', href: '/about' },
               { name: '動態專欄', href: '/blog' }
             ].map((item) => (
@@ -114,7 +122,7 @@ export default function Header() {
                   setMobileMenuOpen(false)
                 }}
               >
-                預約演示
+                預約諮詢
               </Button>
             </div>
           </nav>

@@ -1,79 +1,102 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState } from 'react'
+import ContactModal from './ContactModal'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const [contactModalOpen, setContactModalOpen] = useState(false)
 
   return (
-    <footer className="bg-text-main text-white">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
+    <>
+      <footer className="bg-text-main text-white">
+        <div className="max-w-7xl mx-auto px-6 py-6">
+
+          {/* Main Content */}
+          <div className="flex flex-col md:flex-row items-center gap-8">
+
+            {/* Left - Company & SBIR */}
+            <div className="flex items-center gap-3">
               <Image
                 src="/logo.png"
                 alt="果友科技"
-                width={32}
-                height={32}
+                width={20}
+                height={20}
                 className="rounded-lg"
               />
-              <span className="text-xl font-bold">果友科技</span>
-            </div>
-            <p className="text-gray-300 mb-4 leading-relaxed max-w-md">
-              專注營運痛點、提供有效率、自動化的落地服務方案。為企業選定最合適的技術解決方案，AI 真正落地，為企業創造價值。
-            </p>
-
-            {/* SBIR Certification Badge */}
-            <div className="mb-6 inline-flex items-center gap-3 bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-xl px-4 py-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">SBIR</span>
-              </div>
-              <div>
-                <div className="text-primary font-bold text-sm">2025年中央型SBIR</div>
-                <div className="text-gray-300 text-xs">政府核定創新廠商</div>
-              </div>
+              <span className="font-bold text-white">果友科技</span>
+              <div className="text-primary text-sm font-medium">|</div>
+              <span className="text-xs text-primary font-bold">SBIR 中央核定創新廠商</span>
             </div>
 
+            {/* Center - Contact Info */}
+            <div className="flex items-center gap-6 text-sm flex-1 justify-center">
+              <div className="flex items-center gap-2 text-gray-300">
+                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span>台北市大安區忠孝東路4段300號5樓</span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-300">
+                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                <a href="mailto:hr@goyo-tech.com" className="hover:text-primary transition-colors">
+                  hr@goyo-tech.com
+                </a>
+              </div>
+              <button
+                onClick={() => setContactModalOpen(true)}
+                className="flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
+              >
+                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+                <span>填寫聯繫表單</span>
+              </button>
+            </div>
+
+            {/* Right - Social Links */}
+            <div className="flex items-center gap-3">
+              <Link
+                href="https://www.linkedin.com/company/goyo-tech"
+                target="_blank"
+                className="w-8 h-8 bg-gray-700 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </Link>
+
+              <Link
+                href="https://www.104.com.tw/company/1a2x6blmez"
+                target="_blank"
+                className="w-8 h-8 bg-gray-700 hover:bg-orange-500 rounded-full flex items-center justify-center transition-colors"
+              >
+                <span className="text-xs font-bold">104</span>
+              </Link>
+            </div>
           </div>
 
-          {/* Solutions */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">解決方案</h3>
-            <ul className="space-y-3">
-              <li><Link href="/products" className="text-gray-300 hover:text-primary transition-colors">AI 代理服務</Link></li>
-              <li><Link href="/products" className="text-gray-300 hover:text-primary transition-colors">客製化專案</Link></li>
-              <li><Link href="/products" className="text-gray-300 hover:text-primary transition-colors">系統整合</Link></li>
-              <li><Link href="/products" className="text-gray-300 hover:text-primary transition-colors">雲端部署</Link></li>
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">關於我們</h3>
-            <ul className="space-y-3">
-              <li><Link href="/about" className="text-gray-300 hover:text-primary transition-colors">公司介紹</Link></li>
-              <li><Link href="/blog" className="text-gray-300 hover:text-primary transition-colors">人才招募</Link></li>
-              <li><Link href="/#testimonials" className="text-gray-300 hover:text-primary transition-colors">合作夥伴</Link></li>
-              <li><Link href="/#contact" className="text-gray-300 hover:text-primary transition-colors">聯繫我們</Link></li>
-            </ul>
+          {/* Bottom Copyright */}
+          <div className="border-t border-gray-800 pt-3 mt-4">
+            <div className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+              <span>© {currentYear} 果友科技 Goyo Tech. 版權所有.</span>
+              <div className="flex gap-4 mt-2 md:mt-0">
+                <Link href="/privacy" className="hover:text-primary transition-colors">隱私政策</Link>
+                <Link href="/terms" className="hover:text-primary transition-colors">服務條款</Link>
+              </div>
+            </div>
           </div>
         </div>
+      </footer>
 
-        {/* Bottom Section */}
-        <div className="border-t border-gray-800 pt-8 mt-12">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-400 text-sm">
-              © {currentYear} 果友科技 Goyo Tech. 版權所有.
-            </div>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              <Link href="/privacy" className="text-gray-400 hover:text-primary text-sm transition-colors">隱私政策</Link>
-              <Link href="/terms" className="text-gray-400 hover:text-primary text-sm transition-colors">服務條款</Link>
-              <Link href="/cookie-policy" className="text-gray-400 hover:text-primary text-sm transition-colors">Cookie 政策</Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+      <ContactModal
+        isOpen={contactModalOpen}
+        onClose={() => setContactModalOpen(false)}
+      />
+    </>
   )
 }
