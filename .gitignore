@@ -1,14 +1,63 @@
 # Environment variables
 .env
+.env.local
+.env.development
+.env.production
+.env*.local
 
 # Python cache
 __pycache__/
 *.pyc
+*.pyo
+.Python
+venv/
+.venv/
+
+# Next.js and Node.js
+node_modules/
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
 # Editor files
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# HTML files (old version, not needed)
+*.html
+**/*.html
 
 # OS files
 .DS_Store
+.DS_Store?
+._*
 Thumbs.db
+ehthumbs.db
+
+# Large binary/design files
+*.pptx
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# Misc
+*.log
+.vercel
+coverage/
+.turbo/
+
+# Root level misplaced files
+/package.json
+/package-lock.json

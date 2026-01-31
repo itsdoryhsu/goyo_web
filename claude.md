@@ -141,3 +141,34 @@ When seeing code, immediately make three-layer judgments:
 "These 10 lines can become 3 lines"
 "The data structure is wrong, it should be..."
 ```
+
+# Goyo Tech Development Best Practices
+
+## 關鍵開發流程記錄
+
+### React 組件開發標準
+1. **圖示系統**: 使用 `components/ui/Icons.tsx` 統一管理 SVG 圖示
+2. **動畫系統**:
+   - 所有動畫定義在 `globals.css` 中
+   - 使用 `animate-fade-in-up` 等標準動畫類別
+   - 動畫時長建議: 200ms-600ms，避免過慢
+3. **組件結構**:
+   - ServiceCard 支援 `icon: string | React.ReactNode`
+   - 使用 TypeScript 嚴格類型檢查
+   - 遵循單一職責原則
+
+### 專業化要求
+1. **SBIR 認證展示**: 必須在 Hero、Metrics、Footer 三處顯著展示
+2. **圖示使用**: 禁用表情符號，統一使用 Heroicons 風格的 SVG
+3. **按鈕文字**: 企業網站使用"聯絡我們"而非"立即開始"
+4. **動畫效能**: FAQ 等交互動畫不超過 200ms
+
+### Tailwind CSS 設定要點
+- 使用 v3 版本避免 PostCSS 相容性問題
+- 自定義顏色: `primary: #9980ff`, `primary-dark: #7a66cc`
+- 配置檔案: `tailwind.config.js` 和 `postcss.config.js` 必須正確設定
+
+### 開發環境注意事項
+- 多個 dev server 可能同時運行，使用正確的 port
+- 檔案路徑使用絕對路徑: `/Users/cy.hsu/Documents/goyo business/goyo.com/goyo_tech_next/`
+- 確保 tsconfig.json 中有正確的 path mapping
