@@ -95,3 +95,20 @@
     }
   }
 }
+
+/* Applause button 自訂樣式 - 數字顯示在右側 */
+.applause-wrapper applause-button {
+  --applause-button-color: #9980ff;
+}
+
+.applause-wrapper applause-button .count-container {
+  position: relative !important;
+  top: auto !important;
+  font-size: 14px !important;
+}
+
+.applause-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

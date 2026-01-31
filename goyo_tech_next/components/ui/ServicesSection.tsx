@@ -24,7 +24,8 @@ const coreProducts = [
       { title: '單據辨識歸檔', desc: 'OCR識別各類單據，自動分類歸檔' },
       { title: '人資政策查詢', desc: '員工可快速查詢公司政策與福利' },
       { title: '知識視覺化', desc: '重要資訊儀表板展示' }
-    ]
+    ],
+    ctaText: '免費試用'
   },
   {
     id: 'ai-agents',
@@ -38,7 +39,8 @@ const coreProducts = [
       { title: '智能客服代理', desc: '24/7處理客戶諮詢' },
       { title: '財務分析代理', desc: '即時財務資訊分析' },
       { title: '銷售助手代理', desc: '潛客開發與智能報價' }
-    ]
+    ],
+    ctaText: '免費試用'
   },
   {
     id: 'custom-ai',
@@ -52,7 +54,8 @@ const coreProducts = [
       { title: 'AI工作流程', desc: '客製化業務流程自動化' },
       { title: 'API整合服務', desc: '第三方系統無縫整合' },
       { title: '數位轉型顧問', desc: '完整轉型策略與實施' }
-    ]
+    ],
+    ctaText: '免費諮詢'
   }
 ]
 
@@ -127,9 +130,14 @@ function ProductCard({ product }: ProductCardProps) {
 
       {/* CTA 按鈕 */}
       <div className="flex gap-3">
-        <button className={`flex-1 ${colors.button} text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200`}>
-          了解方案
-        </button>
+        <a
+          href="https://line.me/R/ti/p/@577hqmty"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`flex-1 ${colors.button} text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200 text-center`}
+        >
+          {product.ctaText}
+        </a>
         <button className="px-6 py-3 border border-gray-200 rounded-lg font-semibold text-gray-700 hover:border-gray-300 transition-colors duration-200">
           案例分析
         </button>

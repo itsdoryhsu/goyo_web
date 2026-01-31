@@ -6,9 +6,9 @@ export default function AboutHeroSection() {
           <h1 className="text-4xl font-extrabold tracking-tight text-text-main sm:text-5xl xl:text-6xl mb-6">
             關於<span className="text-primary">果友</span>
           </h1>
-          <p className="text-lg text-text-muted leading-relaxed max-w-3xl mx-auto">
+          <p className="text-xl text-text-muted leading-relaxed max-w-3xl mx-auto">
             {/* 🔥 請填入更具說服力的公司介紹 */}
-            <span className="bg-primary/5 border border-primary/20 px-2 py-1 rounded text-primary font-medium">
+            <span className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
               果友科技成立於2024年，我們專注於AI、AWS雲端架構與數據科技領域，三大面向應用開發。團隊具備[具體年資]年的[相關技術/行業]經驗，獲得SBIR認證。
             </span>
           </p>

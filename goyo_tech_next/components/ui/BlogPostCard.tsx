@@ -50,12 +50,11 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
       {/* 文章內容 */}
       <div className="mt-6 flex flex-col">
         {/* 文章元信息 */}
-        <div className="mb-3 flex items-center gap-4 text-sm font-medium text-gray-500">
-          <span>{post.publishedDate}</span>
-          <span className="text-[#9980ff]">•</span>
-          <span className="text-[#9980ff]">{post.category}</span>
-          <span className="text-[#9980ff]">•</span>
-          <span>{post.readTime} 分鐘閱讀</span>
+        <div className="mb-3 flex items-center justify-between text-sm font-medium">
+          <span className="text-gray-500">{post.publishedDate}</span>
+          <span className="bg-[#9980ff]/10 text-[#9980ff] px-3 py-1 rounded-full">
+            {post.category}
+          </span>
         </div>
 
         {/* 文章標題 */}

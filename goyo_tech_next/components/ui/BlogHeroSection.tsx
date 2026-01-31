@@ -9,10 +9,10 @@ export default function BlogHeroSection() {
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl font-black leading-tight tracking-tight text-[#100c1d] sm:text-5xl lg:text-6xl mb-6">
-          <span className="gradient-text">果友</span> 的一些小分享
+          <span className="gradient-text">友</span> 話直說
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          不管是我們自己在專案面、營運面或是創業上的一些心路歷程，想要透過文字幫自己做個紀錄、同時也分享給大家 ：）
+          來聊聊吧～關於專案、營運、創業的真心話與大冒險。
         </p>
       </div>
     </section>
